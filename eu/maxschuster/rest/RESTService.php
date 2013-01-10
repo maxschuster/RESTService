@@ -46,7 +46,7 @@ class RESTService {
     // ===================
     
     /**
-     * 200 OK
+     * 200 OK:
      * Standard response for successful HTTP requests. The actual response will
      * depend on the request method used. In a GET request, the response will
      * contain an entity corresponding to the requested resource. In a POST
@@ -57,7 +57,7 @@ class RESTService {
     const STATUS_OK = 200;
     
     /**
-     * 201 Created
+     * 201 Created:
      * The request has been fulfilled and resulted in a new resource being
      * created.
      * @const STATUS_CREATED
@@ -65,7 +65,7 @@ class RESTService {
     const STATUS_CREATED = 201;
     
     /**
-     * 202 Accepted
+     * 202 Accepted:
      * The request has been accepted for processing, but the processing has not
      * been completed. The request might or might not eventually be acted upon,
      * as it might be disallowed when processing actually takes place.
@@ -74,7 +74,7 @@ class RESTService {
     const STATUS_ACCEPTED = 202;
     
     /**
-     * 204 No Content
+     * 204 No Content:
      * The server successfully processed the request, but is not returning any
      * content.
      * @const STATUS_NO_CONTENT
@@ -86,14 +86,14 @@ class RESTService {
     // ===================
     
     /**
-     * 400 Bad Request
+     * 400 Bad Request:
      * The request cannot be fulfilled due to bad syntax.
      * @const STATUS_BAD_REQUEST
      */
     const STATUS_BAD_REQUEST = 400;
     
     /**
-     * 401 Unauthorized
+     * 401 Unauthorized:
      * Similar to 403 Forbidden, but specifically for use when authentication is
      * required and has failed or has not yet been provided. The response must
      * include a WWW-Authenticate header field containing a challenge applicable
@@ -104,7 +104,7 @@ class RESTService {
     const STATUS_UNAUTHORIZED = 401;
     
     /**
-     * 403 Forbidden
+     * 403 Forbidden:
      * The request was a valid request, but the server is refusing to respond to
      * it. Unlike a 401 Unauthorized response, authenticating will make no
      * difference. On servers where authentication is required, this commonly
@@ -117,7 +117,7 @@ class RESTService {
     const STATUS_FORBIDDEN = 403;
     
     /**
-     * 404 Not Found
+     * 404 Not Found:
      * The requested resource could not be found but may be available again in
      * the future. Subsequent requests by the client are permissible.
      * @const STATUS_NOT_FOUND
@@ -125,7 +125,7 @@ class RESTService {
     const STATUS_NOT_FOUND = 404;
     
     /**
-     * 405 Method Not Allowed
+     * 405 Method Not Allowed:
      * A request was made of a resource using a request method not supported by
      * that resource; for example, using GET on a form which requires data to be
      * presented via POST, or using PUT on a read-only resource.
@@ -134,7 +134,7 @@ class RESTService {
     const STATUS_METHOD_NOT_ALLOWED = 405;
     
     /**
-     * 409 Conflict
+     * 409 Conflict:
      * Indicates that the request could not be processed because of conflict in
      * the request, such as an edit conflict.
      * @const STATUS_CONFLICT
@@ -145,14 +145,14 @@ class RESTService {
     // 5xx Server Error
     // ===================
     /**
-     * 500 Internal Server Error
+     * 500 Internal Server Error:
      * A generic error message, given when no more specific message is suitable.
      * @const STATUS_INTERNAL_SERVER_ERROR
      */
     const STATUS_INTERNAL_SERVER_ERROR = 500;
     
     /** 
-     * 501 Not Implemented
+     * 501 Not Implemented:
      * The server either does not recognize the request method, or it lacks the
      * ability to fulfill the request.
      * @const STATUS_NOT_IMPLEMENTED
@@ -202,7 +202,7 @@ class RESTService {
      * Additional controllers...
      * @throws \UnexpectedValueException
      */
-    public function addController($controller) {
+    public function addController($controller, $_) {
         $n = func_num_args();
         for ($i = 0; $i < $n; $i++) {
             $c = func_get_arg($i);

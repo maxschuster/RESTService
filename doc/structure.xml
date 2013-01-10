@@ -1,0 +1,961 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a12" title="RESTService">
+  <file path="inc.rest.php" hash="ca139cda01681b5a2628b7bd79b5c008" package="restservice">
+    <docblock line="3">
+      <description>This file includes all files that are necessary for RESTService.</description>
+      <long-description/>
+      <tag line="3" name="author" description="Max Schuster &lt;dev@maxschuster.eu&gt;"/>
+      <tag line="3" name="license" description="http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0"/>
+      <tag line="3" name="package" description="restservice"/>
+    </docblock>
+    <include line="11" type="Require Once" package="Default">
+      <name>RESTServiceControllerInterface.php</name>
+    </include>
+    <include line="14" type="Require Once" package="Default">
+      <name>RESTRequest.php</name>
+    </include>
+    <include line="15" type="Require Once" package="Default">
+      <name>RESTService.php</name>
+    </include>
+    <include line="16" type="Require Once" package="Default">
+      <name>RESTServiceController.php</name>
+    </include>
+    <include line="17" type="Require Once" package="Default">
+      <name>RESTServiceCRUDController.php</name>
+    </include>
+  </file>
+  <file path="RESTRequest.php" hash="a7cfc21ee2a6fd976e7ee8bfafeb197a" package="restservice">
+    <docblock line="3">
+      <description>This file contains the RESTRequest class</description>
+      <long-description/>
+      <tag line="3" name="author" description="Max Schuster &lt;dev@maxschuster.eu&gt;"/>
+      <tag line="3" name="license" description="http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0"/>
+      <tag line="3" name="package" description="restservice"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="eu\maxschuster\rest" line="33" package="restservice">
+      <extends/>
+      <name>RESTRequest</name>
+      <full_name>\eu\maxschuster\rest\RESTRequest</full_name>
+      <docblock line="28">
+        <description>Contains the request and offers ways to access its data.</description>
+        <long-description/>
+        <tag line="28" name="author" description="Max Schuster &lt;dev@maxschuster.eu&gt;"/>
+        <tag line="28" name="package" description="restservice"/>
+      </docblock>
+      <constant namespace="eu\maxschuster\rest" line="39" package="restservice">
+        <name>TYPE_UNKNOWN</name>
+        <full_name>TYPE_UNKNOWN</full_name>
+        <value>1</value>
+        <docblock line="35">
+          <description>Unknown Request type</description>
+          <long-description/>
+          <tag line="35" name="const" description="TYPE_UNKNOWN"/>
+        </docblock>
+      </constant>
+      <constant namespace="eu\maxschuster\rest" line="45" package="restservice">
+        <name>TYPE_GET</name>
+        <full_name>TYPE_GET</full_name>
+        <value>2</value>
+        <docblock line="41">
+          <description>Request type GET</description>
+          <long-description/>
+          <tag line="41" name="const" description="TYPE_GET"/>
+        </docblock>
+      </constant>
+      <constant namespace="eu\maxschuster\rest" line="51" package="restservice">
+        <name>TYPE_POST</name>
+        <full_name>TYPE_POST</full_name>
+        <value>4</value>
+        <docblock line="47">
+          <description>Request type POST</description>
+          <long-description/>
+          <tag line="47" name="const" description="TYPE_POST"/>
+        </docblock>
+      </constant>
+      <constant namespace="eu\maxschuster\rest" line="57" package="restservice">
+        <name>TYPE_PUT</name>
+        <full_name>TYPE_PUT</full_name>
+        <value>8</value>
+        <docblock line="53">
+          <description>Request type PUT</description>
+          <long-description/>
+          <tag line="53" name="const" description="TYPE_PUT"/>
+        </docblock>
+      </constant>
+      <constant namespace="eu\maxschuster\rest" line="63" package="restservice">
+        <name>TYPE_DELETE</name>
+        <full_name>TYPE_DELETE</full_name>
+        <value>16</value>
+        <docblock line="59">
+          <description>Request type DELETE</description>
+          <long-description/>
+          <tag line="59" name="const" description="TYPE_DELETE"/>
+        </docblock>
+      </constant>
+      <constant namespace="eu\maxschuster\rest" line="69" package="restservice">
+        <name>TYPE_ALL</name>
+        <full_name>TYPE_ALL</full_name>
+        <value>2147483647</value>
+        <docblock line="65">
+          <description>All request types</description>
+          <long-description/>
+          <tag line="65" name="const" description="TYPE_ALL"/>
+        </docblock>
+      </constant>
+      <property final="false" static="false" visibility="protected" line="75" namespace="eu\maxschuster\rest" package="Default">
+        <name>$type</name>
+        <default/>
+        <docblock line="71">
+          <description>Request type; see TYPE_* constants</description>
+          <long-description/>
+          <tag line="71" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="81" namespace="eu\maxschuster\rest" package="Default">
+        <name>$extension</name>
+        <default/>
+        <docblock line="77">
+          <description>Requests file extension</description>
+          <long-description/>
+          <tag line="77" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="87" namespace="eu\maxschuster\rest" package="Default">
+        <name>$filename</name>
+        <default/>
+        <docblock line="83">
+          <description>Requests filename</description>
+          <long-description/>
+          <tag line="83" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="93" namespace="eu\maxschuster\rest" package="Default">
+        <name>$path</name>
+        <default/>
+        <docblock line="89">
+          <description>URI path segments parts</description>
+          <long-description/>
+          <tag line="89" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="99" namespace="eu\maxschuster\rest" package="Default">
+        <name>$pathWithFilename</name>
+        <default/>
+        <docblock line="95">
+          <description>URI path segments parts + filename</description>
+          <long-description/>
+          <tag line="95" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="105" namespace="eu\maxschuster\rest" package="Default">
+        <name>$pathWithFilenameCount</name>
+        <default/>
+        <docblock line="101">
+          <description>Number of elements inside $this-&gt;pathWithFilename</description>
+          <long-description/>
+          <tag line="101" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="111" namespace="eu\maxschuster\rest" package="Default">
+        <name>$uri</name>
+        <default/>
+        <docblock line="107">
+          <description>The given URI</description>
+          <long-description/>
+          <tag line="107" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="eu\maxschuster\rest" line="120" package="restservice">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="113">
+          <description>Constructs a new request</description>
+          <long-description/>
+          <tag line="113" name="param" description="Request URI" type="string" variable="$uri">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="113" name="param" description="Request type; see TYPE_* constants" type="int|string" variable="$type">
+            <type by_reference="false">int</type>
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="120">
+          <name>$uri</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="120">
+          <name>$type</name>
+          <default>NULL</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="eu\maxschuster\rest" line="137" package="restservice">
+        <name>keywordValue</name>
+        <full_name>keywordValue</full_name>
+        <docblock line="128">
+          <description>Gets the value/s for a keyword.</description>
+          <long-description/>
+          <tag line="128" name="param" description="Keyword to find" type="string" variable="$keyword">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="128" name="param" description="Offset/s to get" type="int|array" variable="$offset">
+            <type by_reference="false">int</type>
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="128" name="return" description="Keywords value. Array if $offset is an array" type="array|string|null">
+            <type by_reference="false">array</type>
+            <type by_reference="false">string</type>
+            <type by_reference="false">null</type>
+          </tag>
+        </docblock>
+        <argument line="137">
+          <name>$keyword</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="137">
+          <name>$offset</name>
+          <default>1</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="eu\maxschuster\rest" line="167" package="restservice">
+        <name>indexValue</name>
+        <full_name>indexValue</full_name>
+        <docblock line="162">
+          <description>Gets the value of the given index.</description>
+          <long-description/>
+          <tag line="162" name="param" description="Index to search" type="int" variable="$index">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="162" name="return" description="Value for index" type="string|null">
+            <type by_reference="false">string</type>
+            <type by_reference="false">null</type>
+          </tag>
+        </docblock>
+        <argument line="167">
+          <name>$index</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="eu\maxschuster\rest" line="177" package="restservice">
+        <name>getType</name>
+        <full_name>getType</full_name>
+        <docblock line="172">
+          <description>Gets the request type; see TYPE_* constants</description>
+          <long-description/>
+          <tag line="172" name="return" description="Request type" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="eu\maxschuster\rest" line="186" package="restservice">
+        <name>setType</name>
+        <full_name>setType</full_name>
+        <docblock line="181">
+          <description>Gets the request type; see TYPE_* constants</description>
+          <long-description/>
+          <tag line="181" name="param" description="Request type" type="int|string" variable="$type">
+            <type by_reference="false">int</type>
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="186">
+          <name>$type</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="eu\maxschuster\rest" line="218" package="restservice">
+        <name>getExtension</name>
+        <full_name>getExtension</full_name>
+        <docblock line="214">
+          <description>Gets the requests file extension</description>
+          <long-description/>
+          <tag line="214" name="return" description="Requests file extension" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="eu\maxschuster\rest" line="226" package="restservice">
+        <name>setExtension</name>
+        <full_name>setExtension</full_name>
+        <docblock line="222">
+          <description>Sets the requests file extension</description>
+          <long-description/>
+          <tag line="222" name="param" description="Requests file extension" type="string" variable="$extension">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="226">
+          <name>$extension</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="eu\maxschuster\rest" line="234" package="restservice">
+        <name>getPath</name>
+        <full_name>getPath</full_name>
+        <docblock line="230">
+          <description>Gets the seperated path segments</description>
+          <long-description/>
+          <tag line="230" name="return" description="Seperated path segments" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="eu\maxschuster\rest" line="242" package="restservice">
+        <name>setPath</name>
+        <full_name>setPath</full_name>
+        <docblock line="238">
+          <description>Sets the seperated path segments</description>
+          <long-description/>
+          <tag line="238" name="param" description="Seperated path segments" type="array" variable="$path">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="242">
+          <name>$path</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="eu\maxschuster\rest" line="250" package="restservice">
+        <name>getUri</name>
+        <full_name>getUri</full_name>
+        <docblock line="246">
+          <description>Gets the requests URI</description>
+          <long-description/>
+          <tag line="246" name="return" description="Requests URI" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="eu\maxschuster\rest" line="258" package="restservice">
+        <name>setUri</name>
+        <full_name>setUri</full_name>
+        <docblock line="254">
+          <description>Sets the requests URI</description>
+          <long-description/>
+          <tag line="254" name="param" description="Requests URI" type="string" variable="$uri">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="258">
+          <name>$uri</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="eu\maxschuster\rest" line="287" package="restservice">
+        <name>getFilename</name>
+        <full_name>getFilename</full_name>
+        <docblock line="283">
+          <description>Gets the requests filename</description>
+          <long-description/>
+          <tag line="283" name="return" description="Request filename" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="eu\maxschuster\rest" line="295" package="restservice">
+        <name>setFilename</name>
+        <full_name>setFilename</full_name>
+        <docblock line="291">
+          <description>Sets the requests filename</description>
+          <long-description/>
+          <tag line="291" name="param" description="Request filename" type="string" variable="$filename">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="295">
+          <name>$filename</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="eu\maxschuster\rest" line="303" package="restservice">
+        <name>getPathWithFilename</name>
+        <full_name>getPathWithFilename</full_name>
+        <docblock line="299">
+          <description>Get path segments + filename</description>
+          <long-description/>
+          <tag line="299" name="return" description="Path segments + filename" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="eu\maxschuster\rest" line="311" package="restservice">
+        <name>setPathWithFilename</name>
+        <full_name>setPathWithFilename</full_name>
+        <docblock line="307">
+          <description>Set path segments + filename</description>
+          <long-description/>
+          <tag line="307" name="param" description="Path segments + filename" type="array" variable="$pathWithFilename">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="311">
+          <name>$pathWithFilename</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="RESTService.php" hash="75225ac3f6675606bed37bb676ec734f" package="restservice">
+    <docblock line="3">
+      <description>This file contains the RESTService class</description>
+      <long-description/>
+      <tag line="3" name="author" description="Max Schuster &lt;dev@maxschuster.eu&gt;"/>
+      <tag line="3" name="license" description="http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0"/>
+      <tag line="3" name="package" description="restservice"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="eu\maxschuster\rest" line="35" package="restservice">
+      <extends/>
+      <name>RESTService</name>
+      <full_name>\eu\maxschuster\rest\RESTService</full_name>
+      <docblock line="28">
+        <description>This class represents the rest service.</description>
+        <long-description>&lt;p&gt;Controller can be registered in an
+instance of this class and this class seeks the right controller for the
+request to be processed.&lt;/p&gt;</long-description>
+        <tag line="28" name="author" description="Max Schuster &lt;dev@maxschuster.eu&gt;"/>
+        <tag line="28" name="package" description="restservice"/>
+      </docblock>
+      <constant namespace="eu\maxschuster\rest" line="57" package="restservice">
+        <name>STATUS_OK</name>
+        <full_name>STATUS_OK</full_name>
+        <value>200</value>
+        <docblock line="48">
+          <description>200 OK:
+Standard response for successful HTTP requests.</description>
+          <long-description>&lt;p&gt;The actual response will
+depend on the request method used. In a GET request, the response will
+contain an entity corresponding to the requested resource. In a POST
+request the response will contain an entity describing or containing the
+result of the action.&lt;/p&gt;</long-description>
+          <tag line="48" name="const" description="STATUS_OK"/>
+        </docblock>
+      </constant>
+      <constant namespace="eu\maxschuster\rest" line="65" package="restservice">
+        <name>STATUS_CREATED</name>
+        <full_name>STATUS_CREATED</full_name>
+        <value>201</value>
+        <docblock line="59">
+          <description>201 Created:
+The request has been fulfilled and resulted in a new resource being
+created.</description>
+          <long-description/>
+          <tag line="59" name="const" description="STATUS_CREATED"/>
+        </docblock>
+      </constant>
+      <constant namespace="eu\maxschuster\rest" line="74" package="restservice">
+        <name>STATUS_ACCEPTED</name>
+        <full_name>STATUS_ACCEPTED</full_name>
+        <value>202</value>
+        <docblock line="67">
+          <description>202 Accepted:
+The request has been accepted for processing, but the processing has not
+been completed.</description>
+          <long-description>&lt;p&gt;The request might or might not eventually be acted upon,
+as it might be disallowed when processing actually takes place.&lt;/p&gt;</long-description>
+          <tag line="67" name="const" description="STATUS_ACCEPTED"/>
+        </docblock>
+      </constant>
+      <constant namespace="eu\maxschuster\rest" line="82" package="restservice">
+        <name>STATUS_NO_CONTENT</name>
+        <full_name>STATUS_NO_CONTENT</full_name>
+        <value>204</value>
+        <docblock line="76">
+          <description>204 No Content:
+The server successfully processed the request, but is not returning any
+content.</description>
+          <long-description/>
+          <tag line="76" name="const" description="STATUS_NO_CONTENT"/>
+        </docblock>
+      </constant>
+      <constant namespace="eu\maxschuster\rest" line="93" package="restservice">
+        <name>STATUS_BAD_REQUEST</name>
+        <full_name>STATUS_BAD_REQUEST</full_name>
+        <value>400</value>
+        <docblock line="88">
+          <description>400 Bad Request:
+The request cannot be fulfilled due to bad syntax.</description>
+          <long-description/>
+          <tag line="88" name="const" description="STATUS_BAD_REQUEST"/>
+        </docblock>
+      </constant>
+      <constant namespace="eu\maxschuster\rest" line="104" package="restservice">
+        <name>STATUS_UNAUTHORIZED</name>
+        <full_name>STATUS_UNAUTHORIZED</full_name>
+        <value>401</value>
+        <docblock line="95">
+          <description>401 Unauthorized:
+Similar to 403 Forbidden, but specifically for use when authentication is
+required and has failed or has not yet been provided.</description>
+          <long-description>&lt;p&gt;The response must
+include a WWW-Authenticate header field containing a challenge applicable
+to the requested resource. See Basic access authentication and Digest
+access authentication.&lt;/p&gt;</long-description>
+          <tag line="95" name="const" description="STATUS_UNAUTHORIZED"/>
+        </docblock>
+      </constant>
+      <constant namespace="eu\maxschuster\rest" line="117" package="restservice">
+        <name>STATUS_FORBIDDEN</name>
+        <full_name>STATUS_FORBIDDEN</full_name>
+        <value>403</value>
+        <docblock line="106">
+          <description>403 Forbidden:
+The request was a valid request, but the server is refusing to respond to
+it.</description>
+          <long-description>&lt;p&gt;Unlike a 401 Unauthorized response, authenticating will make no
+difference. On servers where authentication is required, this commonly
+means that the provided credentials were successfully authenticated but
+that the credentials still do not grant the client permission to access
+the resource (e.g. a recognized user attempting to access restricted
+content).&lt;/p&gt;</long-description>
+          <tag line="106" name="const" description="STATUS_FORBIDDEN"/>
+        </docblock>
+      </constant>
+      <constant namespace="eu\maxschuster\rest" line="125" package="restservice">
+        <name>STATUS_NOT_FOUND</name>
+        <full_name>STATUS_NOT_FOUND</full_name>
+        <value>404</value>
+        <docblock line="119">
+          <description>404 Not Found:
+The requested resource could not be found but may be available again in
+the future.</description>
+          <long-description>&lt;p&gt;Subsequent requests by the client are permissible.&lt;/p&gt;</long-description>
+          <tag line="119" name="const" description="STATUS_NOT_FOUND"/>
+        </docblock>
+      </constant>
+      <constant namespace="eu\maxschuster\rest" line="134" package="restservice">
+        <name>STATUS_METHOD_NOT_ALLOWED</name>
+        <full_name>STATUS_METHOD_NOT_ALLOWED</full_name>
+        <value>405</value>
+        <docblock line="127">
+          <description>405 Method Not Allowed:
+A request was made of a resource using a request method not supported by
+that resource; for example, using GET on a form which requires data to be
+presented via POST, or using PUT on a read-only resource.</description>
+          <long-description/>
+          <tag line="127" name="const" description="STATUS_METHOD_NOT_ALLOWED"/>
+        </docblock>
+      </constant>
+      <constant namespace="eu\maxschuster\rest" line="142" package="restservice">
+        <name>STATUS_CONFLICT</name>
+        <full_name>STATUS_CONFLICT</full_name>
+        <value>409</value>
+        <docblock line="136">
+          <description>409 Conflict:
+Indicates that the request could not be processed because of conflict in
+the request, such as an edit conflict.</description>
+          <long-description/>
+          <tag line="136" name="const" description="STATUS_CONFLICT"/>
+        </docblock>
+      </constant>
+      <constant namespace="eu\maxschuster\rest" line="152" package="restservice">
+        <name>STATUS_INTERNAL_SERVER_ERROR</name>
+        <full_name>STATUS_INTERNAL_SERVER_ERROR</full_name>
+        <value>500</value>
+        <docblock line="147">
+          <description>500 Internal Server Error:
+A generic error message, given when no more specific message is suitable.</description>
+          <long-description/>
+          <tag line="147" name="const" description="STATUS_INTERNAL_SERVER_ERROR"/>
+        </docblock>
+      </constant>
+      <constant namespace="eu\maxschuster\rest" line="160" package="restservice">
+        <name>STATUS_NOT_IMPLEMENTED</name>
+        <full_name>STATUS_NOT_IMPLEMENTED</full_name>
+        <value>501</value>
+        <docblock line="154">
+          <description>501 Not Implemented:
+The server either does not recognize the request method, or it lacks the
+ability to fulfill the request.</description>
+          <long-description/>
+          <tag line="154" name="const" description="STATUS_NOT_IMPLEMENTED"/>
+        </docblock>
+      </constant>
+      <constant namespace="eu\maxschuster\rest" line="166" package="restservice">
+        <name>CONTENT_TYPE_JSON</name>
+        <full_name>CONTENT_TYPE_JSON</full_name>
+        <value>'application/json'</value>
+        <docblock line="162">
+          <description>Mimetype for json</description>
+          <long-description/>
+          <tag line="162" name="const" description="CONTENT_TYPE_JSON"/>
+        </docblock>
+      </constant>
+      <constant namespace="eu\maxschuster\rest" line="172" package="restservice">
+        <name>CONTENT_TYPE_TEXT</name>
+        <full_name>CONTENT_TYPE_TEXT</full_name>
+        <value>'text/plain'</value>
+        <docblock line="168">
+          <description>Mimetype for plain text</description>
+          <long-description/>
+          <tag line="168" name="const" description="CONTENT_TYPE_JSON"/>
+        </docblock>
+      </constant>
+      <property final="false" static="false" visibility="protected" line="178" namespace="eu\maxschuster\rest" package="Default">
+        <name>$controllers</name>
+        <default>array()</default>
+        <docblock line="174">
+          <description>Collection of controllers</description>
+          <long-description/>
+          <tag line="174" name="var" description="" type="\eu\maxschuster\rest\RESTServiceControllerInterface[]">
+            <type by_reference="false">\eu\maxschuster\rest\RESTServiceControllerInterface[]</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="184" namespace="eu\maxschuster\rest" package="Default">
+        <name>$request</name>
+        <default/>
+        <docblock line="180">
+          <description>Parsed request</description>
+          <long-description/>
+          <tag line="180" name="var" description="" type="\eu\maxschuster\rest\RESTRequest">
+            <type by_reference="false">\eu\maxschuster\rest\RESTRequest</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="eu\maxschuster\rest" line="191" package="restservice">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="186">
+          <description>Constructs the rest service</description>
+          <long-description/>
+          <tag line="186" name="param" description="Request URI from REWRITE or any other source" type="string" variable="$uri">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="191">
+          <name>$uri</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="eu\maxschuster\rest" line="205" package="restservice">
+        <name>addController</name>
+        <full_name>addController</full_name>
+        <docblock line="196">
+          <description>Adds one or multible controllers to the service</description>
+          <long-description/>
+          <tag line="196" name="param" description="Controller for the RESTService that implements&#10;the RESTServiceControllerInterface interface." type="\eu\maxschuster\rest\RESTServiceControllerInterface" variable="$controller">
+            <type by_reference="false">\eu\maxschuster\rest\RESTServiceControllerInterface</type>
+          </tag>
+          <tag line="196" name="param" description="[optional]&#10;Additional controllers..." type="\eu\maxschuster\rest\RESTServiceControllerInterface" variable="$_">
+            <type by_reference="false">\eu\maxschuster\rest\RESTServiceControllerInterface</type>
+          </tag>
+          <tag line="196" name="throws" description="" type="\UnexpectedValueException">
+            <type by_reference="false">\UnexpectedValueException</type>
+          </tag>
+        </docblock>
+        <argument line="205">
+          <name>$controller</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="205">
+          <name>$_</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="eu\maxschuster\rest" line="223" package="restservice">
+        <name>getRequest</name>
+        <full_name>getRequest</full_name>
+        <docblock line="219">
+          <description>Get parsed request</description>
+          <long-description/>
+          <tag line="219" name="return" description="Parsed request" type="\eu\maxschuster\rest\RESTRequest">
+            <type by_reference="false">\eu\maxschuster\rest\RESTRequest</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="eu\maxschuster\rest" line="235" package="restservice">
+        <name>setStatus</name>
+        <full_name>setStatus</full_name>
+        <docblock line="227">
+          <description>Sets the response HTTP status code.</description>
+          <long-description>&lt;p&gt;Be shure to call this function before
+any content has been send to the client.&lt;/p&gt;</long-description>
+          <tag line="227" name="param" description="HTTP status code; see STATUS_* constants!" type="int" variable="$status">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="227" name="see" description="\eu\maxschuster\rest\RESTService::STATUS_OK" refers="\eu\maxschuster\rest\RESTService::STATUS_OK"/>
+          <tag line="227" name="see" description="\eu\maxschuster\rest\http://en.wikipedia.org/wiki/List_of_HTTP_status_codes" refers="\eu\maxschuster\rest\http://en.wikipedia.org/wiki/List_of_HTTP_status_codes"/>
+          <tag line="227" name="see" description="\eu\maxschuster\rest\http://php.net/manual/en/function.header.php" refers="\eu\maxschuster\rest\http://php.net/manual/en/function.header.php"/>
+        </docblock>
+        <argument line="235">
+          <name>$status</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="eu\maxschuster\rest" line="247" package="restservice">
+        <name>setContentType</name>
+        <full_name>setContentType</full_name>
+        <docblock line="240">
+          <description>Sets the response content type.</description>
+          <long-description>&lt;p&gt;Be shure to call this function before
+any content has been send to the client.&lt;/p&gt;</long-description>
+          <tag line="240" name="param" description="" type="string" variable="$mimetype">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="240" name="see" description="\eu\maxschuster\rest\http://php.net/manual/en/function.header.php" refers="\eu\maxschuster\rest\http://php.net/manual/en/function.header.php"/>
+          <tag line="240" name="see" description="\eu\maxschuster\rest\http://en.wikipedia.org/wiki/Content-type" refers="\eu\maxschuster\rest\http://en.wikipedia.org/wiki/Content-type"/>
+        </docblock>
+        <argument line="247">
+          <name>$mimetype</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="eu\maxschuster\rest" line="255" package="restservice">
+        <name>handle</name>
+        <full_name>handle</full_name>
+        <docblock line="251">
+          <description>Start to handle the request.</description>
+          <long-description/>
+          <tag line="251" name="throws" description="" type="\Exception">
+            <type by_reference="false">\Exception</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="RESTServiceController.php" hash="a00f1c03bc2b1a9f8b45b424a6911743" package="restservice">
+    <docblock line="3">
+      <description>This file contains the RESTServiceController class</description>
+      <long-description/>
+      <tag line="3" name="author" description="Max Schuster &lt;dev@maxschuster.eu&gt;"/>
+      <tag line="3" name="license" description="http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0"/>
+      <tag line="3" name="package" description="restservice"/>
+    </docblock>
+    <class final="false" abstract="true" namespace="eu\maxschuster\rest" line="33" package="restservice">
+      <extends/>
+      <implements>\eu\maxschuster\rest\RESTServiceControllerInterface</implements>
+      <name>RESTServiceController</name>
+      <full_name>\eu\maxschuster\rest\RESTServiceController</full_name>
+      <docblock line="28">
+        <description>Primitive RESTService controller.</description>
+        <long-description/>
+        <tag line="28" name="author" description="Max Schuster &lt;dev@maxschuster.eu&gt;"/>
+        <tag line="28" name="package" description="restservice"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="38" namespace="eu\maxschuster\rest" package="Default">
+        <name>$service</name>
+        <default/>
+        <docblock line="34">
+          <description>The calling RESTService.</description>
+          <long-description/>
+          <tag line="34" name="var" description="" type="\eu\maxschuster\rest\RESTService">
+            <type by_reference="false">\eu\maxschuster\rest\RESTService</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="44" namespace="eu\maxschuster\rest" package="Default">
+        <name>$request</name>
+        <default/>
+        <docblock line="40">
+          <description>The RESTRequest to handle.</description>
+          <long-description/>
+          <tag line="40" name="var" description="" type="\eu\maxschuster\rest\RESTRequest">
+            <type by_reference="false">\eu\maxschuster\rest\RESTRequest</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="50" namespace="eu\maxschuster\rest" package="Default">
+        <name>$supportedExtensions</name>
+        <default/>
+        <docblock line="46">
+          <description>Array with supported extensions.</description>
+          <long-description/>
+          <tag line="46" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="eu\maxschuster\rest" line="57" package="restservice">
+        <name>setService</name>
+        <full_name>setService</full_name>
+        <docblock line="52">
+          <description>Sets the calling RESTService.</description>
+          <long-description/>
+          <tag line="52" name="param" description="Calling RESTService" type="\eu\maxschuster\rest\RESTService" variable="$sevice">
+            <type by_reference="false">\eu\maxschuster\rest\RESTService</type>
+          </tag>
+        </docblock>
+        <argument line="57">
+          <name>$sevice</name>
+          <default/>
+          <type>\eu\maxschuster\rest\RESTService</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="RESTServiceControllerInterface.php" hash="d7f50260a057d94aaaaae1deccd2e4d3" package="restservice">
+    <docblock line="3">
+      <description>This file contains the RESTServiceControllerInterface interface</description>
+      <long-description/>
+      <tag line="3" name="author" description="Max Schuster &lt;dev@maxschuster.eu&gt;"/>
+      <tag line="3" name="license" description="http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0"/>
+      <tag line="3" name="package" description="restservice"/>
+    </docblock>
+    <interface namespace="eu\maxschuster\rest" line="34" package="restservice">
+      <name>RESTServiceControllerInterface</name>
+      <full_name>\eu\maxschuster\rest\RESTServiceControllerInterface</full_name>
+      <docblock line="28">
+        <description>Interface for all RESTService controllers, that could get registered at
+RESTService instance.</description>
+        <long-description/>
+        <tag line="28" name="author" description="Max Schuster &lt;dev@maxschuster.eu&gt;"/>
+        <tag line="28" name="package" description="restservice"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="eu\maxschuster\rest" line="41" package="restservice">
+        <name>setService</name>
+        <full_name>setService</full_name>
+        <docblock line="36">
+          <description>Sets the calling RESTService.</description>
+          <long-description/>
+          <tag line="36" name="param" description="Calling RESTService" type="\eu\maxschuster\rest\RESTService" variable="$sevice">
+            <type by_reference="false">\eu\maxschuster\rest\RESTService</type>
+          </tag>
+        </docblock>
+        <argument line="41">
+          <name>$sevice</name>
+          <default/>
+          <type>\eu\maxschuster\rest\RESTService</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="eu\maxschuster\rest" line="48" package="restservice">
+        <name>checkResponsibility</name>
+        <full_name>checkResponsibility</full_name>
+        <docblock line="43">
+          <description>Checks if this Controller can handle the current request.</description>
+          <long-description/>
+          <tag line="43" name="return" description="Controller can handle the current request" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="eu\maxschuster\rest" line="53" package="restservice">
+        <name>handle</name>
+        <full_name>handle</full_name>
+        <docblock line="50">
+          <description>Handles the current request.</description>
+          <long-description/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="eu\maxschuster\rest" line="61" package="restservice">
+        <name>extensionSupported</name>
+        <full_name>extensionSupported</full_name>
+        <docblock line="55">
+          <description>Checks if the given extension is supported.</description>
+          <long-description/>
+          <tag line="55" name="param" description="Extension" type="string" variable="$extension">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="55" name="return" description="Extension is supported" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="61">
+          <name>$extension</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+    </interface>
+  </file>
+  <file path="RESTServiceCRUDController.php" hash="a46655244d995572663a6be8dd31771a" package="restservice">
+    <docblock line="3">
+      <description>This file contains the RESTServiceCRUDController class</description>
+      <long-description/>
+      <tag line="3" name="author" description="Max Schuster &lt;dev@maxschuster.eu&gt;"/>
+      <tag line="3" name="license" description="http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0"/>
+      <tag line="3" name="package" description="restservice"/>
+    </docblock>
+    <class final="false" abstract="true" namespace="eu\maxschuster\rest" line="35" package="restservice">
+      <extends>\eu\maxschuster\rest\RESTServiceController</extends>
+      <name>RESTServiceCRUDController</name>
+      <full_name>\eu\maxschuster\rest\RESTServiceCRUDController</full_name>
+      <docblock line="28">
+        <description>Primitive RESTService CRUD controller.</description>
+        <long-description>&lt;p&gt;Can be used as Template for
+controllers that create, read, update and delete resources&lt;/p&gt;</long-description>
+        <tag line="28" name="author" description="Max Schuster &lt;dev@maxschuster.eu&gt;"/>
+        <tag line="28" name="package" description="restservice"/>
+        <tag line="28" name="see" description="\eu\maxschuster\rest\http://en.wikipedia.org/wiki/Create,_read,_update_and_delete" refers="\eu\maxschuster\rest\http://en.wikipedia.org/wiki/Create,_read,_update_and_delete"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="eu\maxschuster\rest" line="39" package="restservice">
+        <name>handle</name>
+        <full_name>handle</full_name>
+        <docblock line="36">
+          <description>Handles the current request.</description>
+          <long-description/>
+        </docblock>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="protected" namespace="eu\maxschuster\rest" line="59" package="restservice">
+        <name>create</name>
+        <full_name>create</full_name>
+        <docblock line="56">
+          <description>Creates a new resource.</description>
+          <long-description/>
+        </docblock>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="protected" namespace="eu\maxschuster\rest" line="64" package="restservice">
+        <name>read</name>
+        <full_name>read</full_name>
+        <docblock line="61">
+          <description>Reads an existing resource.</description>
+          <long-description/>
+        </docblock>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="protected" namespace="eu\maxschuster\rest" line="69" package="restservice">
+        <name>update</name>
+        <full_name>update</full_name>
+        <docblock line="66">
+          <description>Updates an existing resource.</description>
+          <long-description/>
+        </docblock>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="protected" namespace="eu\maxschuster\rest" line="74" package="restservice">
+        <name>delete</name>
+        <full_name>delete</full_name>
+        <docblock line="71">
+          <description>Deletes an existing resource.</description>
+          <long-description/>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <package name="restservice" full_name="restservice"/>
+  <namespace name="eu" full_name="eu">
+    <namespace name="maxschuster" full_name="eu\maxschuster">
+      <namespace name="rest" full_name="eu\maxschuster\rest"/>
+    </namespace>
+  </namespace>
+  <marker count="0">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>

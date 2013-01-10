@@ -112,10 +112,10 @@ class RESTRequest {
 
     /**
      * Constructs a new request
-     * @param int|string $type
-     * Request type; see TYPE_* constants
      * @param string $uri
      * Request URI
+     * @param int|string $type
+     * Request type; see TYPE_* constants
      */
     public function __construct($uri, $type = NULL) {
         if (!$type) {
@@ -126,7 +126,7 @@ class RESTRequest {
     }
     
     /**
-     * 
+     * Gets the value/s for a keyword.
      * @param string $keyword
      * Keyword to find
      * @param int|array $offset
