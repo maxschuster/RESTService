@@ -31,7 +31,7 @@ namespace eu\maxschuster\rest;
  * @author Max Schuster <dev@maxschuster.eu>
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  * @package restservice
- * @see http://en.wikipedia.org/wiki/Create,_read,_update_and_delete
+ * @link http://en.wikipedia.org/wiki/Create,_read,_update_and_delete
  */
 abstract class RESTServiceCRUDController extends RESTServiceController {
     /**

@@ -229,8 +229,8 @@ class RESTService {
      * any content has been send to the client.
      * @param int $status HTTP status code; see STATUS_* constants!
      * @see RESTService::STATUS_OK
-     * @see http://en.wikipedia.org/wiki/List_of_HTTP_status_codes
-     * @see http://php.net/manual/en/function.header.php
+     * @link http://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+     * @link http://php.net/manual/en/function.header.php
      */
     public function setStatus($status) {
         ob_clean(); // Try to clean buffer
@@ -241,8 +241,8 @@ class RESTService {
      * Sets the response content type. Be shure to call this function before
      * any content has been send to the client.
      * @param string $mimetype
-     * @see http://php.net/manual/en/function.header.php
-     * @see http://en.wikipedia.org/wiki/Content-type
+     * @link http://php.net/manual/en/function.header.php
+     * @link http://en.wikipedia.org/wiki/Content-type
      */
     public function setContentType($mimetype) {
         header('Content-Type: ' . $mimetype, true);

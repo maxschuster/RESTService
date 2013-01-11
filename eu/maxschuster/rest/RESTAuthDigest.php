@@ -32,7 +32,7 @@ use eu\maxschuster\rest\RESTService;
  *
  * @author Max Schuster <dev@maxschuster.eu>
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @see http://en.wikipedia.org/wiki/Digest_access_authentication
+ * @link http://en.wikipedia.org/wiki/Digest_access_authentication
  * @package restservice
  */
 abstract class RESTAuthDigest extends RESTAuth {

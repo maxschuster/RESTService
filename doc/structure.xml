@@ -33,10 +33,10 @@
       <name>RESTAuthDigest.php</name>
     </include>
   </file>
-  <file path="RESTAuth.php" hash="3fa4132b1265b954849b3d26eac4adbd" package="restservice">
+  <file path="RESTAuth.php" hash="7c8f4ea73947bff6ed53d7f395cc9204" package="restservice">
     <docblock line="3">
       <description>This file contains the RESTAuth class</description>
-      <long-description/>
+      <long-description></long-description>
       <tag line="3" name="author" description="Max Schuster &lt;dev@maxschuster.eu&gt;"/>
       <tag line="3" name="license" description="http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0"/>
       <tag line="3" name="package" description="restservice"/>
@@ -48,18 +48,18 @@
       <full_name>\eu\maxschuster\rest\RESTAuth</full_name>
       <docblock line="30">
         <description>This class can be used to perform a "Basic access authentication".</description>
-        <long-description/>
+        <long-description></long-description>
         <tag line="30" name="author" description="Max Schuster &lt;dev@maxschuster.eu&gt;"/>
         <tag line="30" name="license" description="http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0"/>
-        <tag line="30" name="see" description="\eu\maxschuster\rest\http://en.wikipedia.org/wiki/Basic_access_authentication" refers="\eu\maxschuster\rest\http://en.wikipedia.org/wiki/Basic_access_authentication"/>
+        <tag line="30" name="link" description="http://en.wikipedia.org/wiki/Basic_access_authentication" link="http://en.wikipedia.org/wiki/Basic_access_authentication"/>
         <tag line="30" name="package" description="restservice"/>
       </docblock>
       <property final="false" static="false" visibility="protected" line="44" namespace="eu\maxschuster\rest" package="Default">
         <name>$data</name>
-        <default/>
+        <default></default>
         <docblock line="40">
           <description>Login data</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="40" name="var" description="" type="mixed">
             <type by_reference="false">mixed</type>
           </tag>
@@ -70,7 +70,7 @@
         <default>'RESTService Auth'</default>
         <docblock line="46">
           <description>Realm</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="46" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -78,10 +78,10 @@
       </property>
       <property final="false" static="false" visibility="protected" line="56" namespace="eu\maxschuster\rest" package="Default">
         <name>$service</name>
-        <default/>
+        <default></default>
         <docblock line="52">
           <description>REST service</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="52" name="var" description="" type="\eu\maxschuster\rest\RESTService">
             <type by_reference="false">\eu\maxschuster\rest\RESTService</type>
           </tag>
@@ -89,10 +89,10 @@
       </property>
       <property final="false" static="false" visibility="protected" line="62" namespace="eu\maxschuster\rest" package="Default">
         <name>$request</name>
-        <default/>
+        <default></default>
         <docblock line="58">
           <description>Request</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="58" name="var" description="" type="\eu\maxschuster\rest\RESTRequest">
             <type by_reference="false">\eu\maxschuster\rest\RESTRequest</type>
           </tag>
@@ -103,7 +103,7 @@
         <full_name>checkAuth</full_name>
         <docblock line="64">
           <description>Checks the send login data</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="64" name="return" description="Login data is correct" type="bool">
             <type by_reference="false">bool</type>
           </tag>
@@ -114,7 +114,7 @@
         <full_name>generateError</full_name>
         <docblock line="76">
           <description>Generates a 'HTTP/1.0 401 Unauthorized' error and will STOP the script.</description>
-          <long-description/>
+          <long-description></long-description>
         </docblock>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="eu\maxschuster\rest" line="91" package="restservice">
@@ -122,14 +122,14 @@
         <full_name>__construct</full_name>
         <docblock line="87">
           <description>Constructor of the auth class</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="87" name="param" description="Calling RESTService" type="\eu\maxschuster\rest\RESTService" variable="$service">
             <type by_reference="false">\eu\maxschuster\rest\RESTService</type>
           </tag>
         </docblock>
         <argument line="91">
           <name>$service</name>
-          <default/>
+          <default></default>
           <type>\eu\maxschuster\rest\RESTService</type>
         </argument>
       </method>
@@ -153,7 +153,7 @@ RESTAuth::getData()&lt;/p&gt;</long-description>
         <docblock line="108">
           <description>Can be used to access data that has eventually has been set through
 RESTAuth::validateData()</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="108" name="see" description="\eu\maxschuster\rest\RESTAuth::validateData()" refers="\eu\maxschuster\rest\RESTAuth::validateData()"/>
           <tag line="108" name="return" description="Data of different types" type="mixed">
             <type by_reference="false">mixed</type>
@@ -162,10 +162,10 @@ RESTAuth::validateData()</description>
       </method>
     </class>
   </file>
-  <file path="RESTAuthDigest.php" hash="9574da2a02cf66f316e1a4679b5ade97" package="restservice">
+  <file path="RESTAuthDigest.php" hash="a3c3d88fbed3fa707f95764834115424" package="restservice">
     <docblock line="3">
       <description>This file contains the RESTAuth class</description>
-      <long-description/>
+      <long-description></long-description>
       <tag line="3" name="author" description="Max Schuster &lt;dev@maxschuster.eu&gt;"/>
       <tag line="3" name="license" description="http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0"/>
       <tag line="3" name="package" description="restservice"/>
@@ -179,7 +179,7 @@ RESTAuth::validateData()</description>
         <long-description>&lt;p&gt;At the moment i have no use for it.&lt;/p&gt;</long-description>
         <tag line="30" name="author" description="Max Schuster &lt;dev@maxschuster.eu&gt;"/>
         <tag line="30" name="license" description="http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0"/>
-        <tag line="30" name="see" description="\eu\maxschuster\rest\http://en.wikipedia.org/wiki/Digest_access_authentication" refers="\eu\maxschuster\rest\http://en.wikipedia.org/wiki/Digest_access_authentication"/>
+        <tag line="30" name="link" description="http://en.wikipedia.org/wiki/Digest_access_authentication" link="http://en.wikipedia.org/wiki/Digest_access_authentication"/>
         <tag line="30" name="package" description="restservice"/>
       </docblock>
     </class>
@@ -769,10 +769,10 @@ provided.&lt;/p&gt;</long-description>
       </method>
     </class>
   </file>
-  <file path="RESTService.php" hash="a2bed76f76a879b6628288a4ddeddcf8" package="restservice">
+  <file path="RESTService.php" hash="09ed74d8da9aba1bb51344389aebb5f2" package="restservice">
     <docblock line="3">
       <description>This file contains the RESTService class</description>
-      <long-description/>
+      <long-description></long-description>
       <tag line="3" name="author" description="Max Schuster &lt;dev@maxschuster.eu&gt;"/>
       <tag line="3" name="license" description="http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0"/>
       <tag line="3" name="package" description="restservice"/>
@@ -813,7 +813,7 @@ result of the action.&lt;/p&gt;</long-description>
           <description>201 Created:
 The request has been fulfilled and resulted in a new resource being
 created.</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="60" name="const" description="STATUS_CREATED"/>
         </docblock>
       </constant>
@@ -838,7 +838,7 @@ as it might be disallowed when processing actually takes place.&lt;/p&gt;</long-
           <description>204 No Content:
 The server successfully processed the request, but is not returning any
 content.</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="77" name="const" description="STATUS_NO_CONTENT"/>
         </docblock>
       </constant>
@@ -849,7 +849,7 @@ content.</description>
         <docblock line="89">
           <description>400 Bad Request:
 The request cannot be fulfilled due to bad syntax.</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="89" name="const" description="STATUS_BAD_REQUEST"/>
         </docblock>
       </constant>
@@ -906,7 +906,7 @@ the future.</description>
 A request was made of a resource using a request method not supported by
 that resource; for example, using GET on a form which requires data to be
 presented via POST, or using PUT on a read-only resource.</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="128" name="const" description="STATUS_METHOD_NOT_ALLOWED"/>
         </docblock>
       </constant>
@@ -918,7 +918,7 @@ presented via POST, or using PUT on a read-only resource.</description>
           <description>409 Conflict:
 Indicates that the request could not be processed because of conflict in
 the request, such as an edit conflict.</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="137" name="const" description="STATUS_CONFLICT"/>
         </docblock>
       </constant>
@@ -929,7 +929,7 @@ the request, such as an edit conflict.</description>
         <docblock line="148">
           <description>500 Internal Server Error:
 A generic error message, given when no more specific message is suitable.</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="148" name="const" description="STATUS_INTERNAL_SERVER_ERROR"/>
         </docblock>
       </constant>
@@ -941,7 +941,7 @@ A generic error message, given when no more specific message is suitable.</descr
           <description>501 Not Implemented:
 The server either does not recognize the request method, or it lacks the
 ability to fulfill the request.</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="155" name="const" description="STATUS_NOT_IMPLEMENTED"/>
         </docblock>
       </constant>
@@ -951,7 +951,7 @@ ability to fulfill the request.</description>
         <value>'application/json'</value>
         <docblock line="163">
           <description>Mimetype for json</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="163" name="const" description="CONTENT_TYPE_JSON"/>
         </docblock>
       </constant>
@@ -961,7 +961,7 @@ ability to fulfill the request.</description>
         <value>'text/plain'</value>
         <docblock line="169">
           <description>Mimetype for plain text</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="169" name="const" description="CONTENT_TYPE_JSON"/>
         </docblock>
       </constant>
@@ -970,7 +970,7 @@ ability to fulfill the request.</description>
         <default>array()</default>
         <docblock line="175">
           <description>Collection of controllers</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="175" name="var" description="" type="\eu\maxschuster\rest\RESTServiceControllerInterface[]">
             <type by_reference="false">\eu\maxschuster\rest\RESTServiceControllerInterface[]</type>
           </tag>
@@ -978,10 +978,10 @@ ability to fulfill the request.</description>
       </property>
       <property final="false" static="false" visibility="protected" line="185" namespace="eu\maxschuster\rest" package="Default">
         <name>$request</name>
-        <default/>
+        <default></default>
         <docblock line="181">
           <description>Parsed request</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="181" name="var" description="" type="\eu\maxschuster\rest\RESTRequest">
             <type by_reference="false">\eu\maxschuster\rest\RESTRequest</type>
           </tag>
@@ -992,14 +992,14 @@ ability to fulfill the request.</description>
         <full_name>__construct</full_name>
         <docblock line="187">
           <description>Constructs the rest service</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="187" name="param" description="Request URI from REWRITE or any other source" type="string" variable="$uri">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
         <argument line="192">
           <name>$uri</name>
-          <default/>
+          <default></default>
           <type/>
         </argument>
       </method>
@@ -1008,7 +1008,7 @@ ability to fulfill the request.</description>
         <full_name>addController</full_name>
         <docblock line="196">
           <description>Adds one or multible controllers to the service</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="196" name="param" description="Controller for the RESTService that implements&#13;&#10;the RESTServiceControllerInterface interface." type="\eu\maxschuster\rest\RESTServiceControllerInterface" variable="$controller">
             <type by_reference="false">\eu\maxschuster\rest\RESTServiceControllerInterface</type>
           </tag>
@@ -1021,12 +1021,12 @@ ability to fulfill the request.</description>
         </docblock>
         <argument line="205">
           <name>$controller</name>
-          <default/>
+          <default></default>
           <type/>
         </argument>
         <argument line="205">
           <name>$_</name>
-          <default/>
+          <default></default>
           <type/>
         </argument>
       </method>
@@ -1035,7 +1035,7 @@ ability to fulfill the request.</description>
         <full_name>getRequest</full_name>
         <docblock line="219">
           <description>Get parsed request</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="219" name="return" description="Parsed request" type="\eu\maxschuster\rest\RESTRequest">
             <type by_reference="false">\eu\maxschuster\rest\RESTRequest</type>
           </tag>
@@ -1052,12 +1052,12 @@ any content has been send to the client.&lt;/p&gt;</long-description>
             <type by_reference="false">int</type>
           </tag>
           <tag line="227" name="see" description="\eu\maxschuster\rest\RESTService::STATUS_OK" refers="\eu\maxschuster\rest\RESTService::STATUS_OK"/>
-          <tag line="227" name="see" description="\eu\maxschuster\rest\http://en.wikipedia.org/wiki/List_of_HTTP_status_codes" refers="\eu\maxschuster\rest\http://en.wikipedia.org/wiki/List_of_HTTP_status_codes"/>
-          <tag line="227" name="see" description="\eu\maxschuster\rest\http://php.net/manual/en/function.header.php" refers="\eu\maxschuster\rest\http://php.net/manual/en/function.header.php"/>
+          <tag line="227" name="link" description="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes" link="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes"/>
+          <tag line="227" name="link" description="http://php.net/manual/en/function.header.php" link="http://php.net/manual/en/function.header.php"/>
         </docblock>
         <argument line="235">
           <name>$status</name>
-          <default/>
+          <default></default>
           <type/>
         </argument>
       </method>
@@ -1071,12 +1071,12 @@ any content has been send to the client.&lt;/p&gt;</long-description>
           <tag line="240" name="param" description="" type="string" variable="$mimetype">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="240" name="see" description="\eu\maxschuster\rest\http://php.net/manual/en/function.header.php" refers="\eu\maxschuster\rest\http://php.net/manual/en/function.header.php"/>
-          <tag line="240" name="see" description="\eu\maxschuster\rest\http://en.wikipedia.org/wiki/Content-type" refers="\eu\maxschuster\rest\http://en.wikipedia.org/wiki/Content-type"/>
+          <tag line="240" name="link" description="http://php.net/manual/en/function.header.php" link="http://php.net/manual/en/function.header.php"/>
+          <tag line="240" name="link" description="http://en.wikipedia.org/wiki/Content-type" link="http://en.wikipedia.org/wiki/Content-type"/>
         </docblock>
         <argument line="247">
           <name>$mimetype</name>
-          <default/>
+          <default></default>
           <type/>
         </argument>
       </method>
@@ -1085,7 +1085,7 @@ any content has been send to the client.&lt;/p&gt;</long-description>
         <full_name>handle</full_name>
         <docblock line="251">
           <description>Start to handle the request.</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="251" name="throws" description="" type="\Exception">
             <type by_reference="false">\Exception</type>
           </tag>
@@ -1239,10 +1239,10 @@ RESTService instance.</description>
       </method>
     </interface>
   </file>
-  <file path="RESTServiceCRUDController.php" hash="f0bf5bf6f254c9b1c2be5d0ea677343b" package="restservice">
+  <file path="RESTServiceCRUDController.php" hash="8729ede539154908406f80d78ea25dc9" package="restservice">
     <docblock line="3">
       <description>This file contains the RESTServiceCRUDController class</description>
-      <long-description/>
+      <long-description></long-description>
       <tag line="3" name="author" description="Max Schuster &lt;dev@maxschuster.eu&gt;"/>
       <tag line="3" name="license" description="http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0"/>
       <tag line="3" name="package" description="restservice"/>
@@ -1258,14 +1258,14 @@ controllers that create, read, update and delete resources&lt;/p&gt;</long-descr
         <tag line="28" name="author" description="Max Schuster &lt;dev@maxschuster.eu&gt;"/>
         <tag line="28" name="license" description="http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0"/>
         <tag line="28" name="package" description="restservice"/>
-        <tag line="28" name="see" description="\eu\maxschuster\rest\http://en.wikipedia.org/wiki/Create,_read,_update_and_delete" refers="\eu\maxschuster\rest\http://en.wikipedia.org/wiki/Create,_read,_update_and_delete"/>
+        <tag line="28" name="link" description="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete" link="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete"/>
       </docblock>
       <method final="false" abstract="false" static="false" visibility="public" namespace="eu\maxschuster\rest" line="40" package="restservice">
         <name>handle</name>
         <full_name>handle</full_name>
         <docblock line="37">
           <description>Handles the current request.</description>
-          <long-description/>
+          <long-description></long-description>
         </docblock>
       </method>
       <method final="false" abstract="true" static="false" visibility="protected" namespace="eu\maxschuster\rest" line="60" package="restservice">
@@ -1273,7 +1273,7 @@ controllers that create, read, update and delete resources&lt;/p&gt;</long-descr
         <full_name>create</full_name>
         <docblock line="57">
           <description>Creates a new resource.</description>
-          <long-description/>
+          <long-description></long-description>
         </docblock>
       </method>
       <method final="false" abstract="true" static="false" visibility="protected" namespace="eu\maxschuster\rest" line="65" package="restservice">
@@ -1281,7 +1281,7 @@ controllers that create, read, update and delete resources&lt;/p&gt;</long-descr
         <full_name>read</full_name>
         <docblock line="62">
           <description>Reads an existing resource.</description>
-          <long-description/>
+          <long-description></long-description>
         </docblock>
       </method>
       <method final="false" abstract="true" static="false" visibility="protected" namespace="eu\maxschuster\rest" line="70" package="restservice">
@@ -1289,7 +1289,7 @@ controllers that create, read, update and delete resources&lt;/p&gt;</long-descr
         <full_name>update</full_name>
         <docblock line="67">
           <description>Updates an existing resource.</description>
-          <long-description/>
+          <long-description></long-description>
         </docblock>
       </method>
       <method final="false" abstract="true" static="false" visibility="protected" namespace="eu\maxschuster\rest" line="75" package="restservice">
@@ -1297,7 +1297,7 @@ controllers that create, read, update and delete resources&lt;/p&gt;</long-descr
         <full_name>delete</full_name>
         <docblock line="72">
           <description>Deletes an existing resource.</description>
-          <long-description/>
+          <long-description></long-description>
         </docblock>
       </method>
     </class>

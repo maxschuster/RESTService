@@ -32,7 +32,7 @@ use eu\maxschuster\rest\RESTAuthInterface;
  *
  * @author Max Schuster <dev@maxschuster.eu>
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @see http://en.wikipedia.org/wiki/Basic_access_authentication
+ * @link http://en.wikipedia.org/wiki/Basic_access_authentication
  * @package restservice
  */
 abstract class RESTAuth implements RESTAuthInterface {
