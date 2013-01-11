@@ -34,6 +34,10 @@ namespace eu\maxschuster\rest;
  */
 interface RESTAuthInterface {
     
+    /**
+     * Contructor
+     * @param RESTService $service The calling service
+     */
     public function __construct(RESTService $service);
     
     /**
