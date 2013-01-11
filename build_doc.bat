@@ -1,0 +1,3 @@
+:: Builds a phpdoc inside the docs folder
+
+phpdoc -t doc -d eu --title RESTService

@@ -29,6 +29,7 @@ namespace eu\maxschuster\rest;
  * Interface for all RESTService controllers, that could get registered at
  * RESTService instance.
  * @author Max Schuster <dev@maxschuster.eu>
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  * @package restservice
  */
 interface RESTServiceControllerInterface {

@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta charset="utf-8">
-<title>RESTService » \eu\maxschuster\rest\RESTServiceControllerInterface</title>
+<title>RESTService » \eu\maxschuster\rest\RESTAuthInterface</title>
 <meta name="author" content="Mike van Riel">
 <meta name="description" content="">
 <link href="../css/template.css" rel="stylesheet" media="all">
@@ -57,15 +57,19 @@
 <ul class="side-nav nav nav-list"><li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods
                     <ul>
-<li class="method public "><a href="#method_checkResponsibility" title="checkResponsibility :: Checks if this Controller can handle the current request."><span class="description">Checks if this Controller can handle the current request.</span><pre>checkResponsibility()</pre></a></li>
-<li class="method public "><a href="#method_extensionSupported" title="extensionSupported :: Checks if the given extension is supported."><span class="description">Checks if the given extension is supported.</span><pre>extensionSupported()</pre></a></li>
-<li class="method public "><a href="#method_handle" title="handle :: Handles the current request."><span class="description">Handles the current request.</span><pre>handle()</pre></a></li>
-<li class="method public "><a href="#method_setService" title="setService :: Sets the calling RESTService."><span class="description">Sets the calling RESTService.</span><pre>setService()</pre></a></li>
+<li class="method public "><a href="#method___construct" title="__construct :: "><span class="description">__construct()
+        </span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_checkAuth" title="checkAuth :: Checks the send login data"><span class="description">Checks the send login data</span><pre>checkAuth()</pre></a></li>
+<li class="method public "><a href="#method_generateError" title="generateError :: Generates an error, usually 'HTTP/1.0 401 Unauthorized'"><span class="description">Generates an error, usually 'HTTP/1.0 401 Unauthorized'</span><pre>generateError()</pre></a></li>
+<li class="method public "><a href="#method_getData" title="getData :: Can be used to access data that has eventually has been set through
+RESTAuth::validateData()"><span class="description">Can be used to access data that has eventually has been set through
+RESTAuth::validateData()</span><pre>getData()</pre></a></li>
+<li class="method public "><a href="#method_validateData" title="validateData :: It should do the actualy check of the login data."><span class="description">It should do the actualy check of the login data.</span><pre>validateData()</pre></a></li>
 </ul>
 </li></ul>
 </div>
 <div class="span8">
-<a id="\eu\maxschuster\rest\RESTServiceControllerInterface"></a><ul class="breadcrumb">
+<a id="\eu\maxschuster\rest\RESTAuthInterface"></a><ul class="breadcrumb">
 <li>
 <a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
 </li>
@@ -77,12 +81,11 @@
 <span class="divider">\</span><a href="../namespaces/eu.maxschuster.rest.html">rest</a>
 </li>
 <li class="active">
-<span class="divider">\</span><a href="../classes/eu.maxschuster.rest.RESTServiceControllerInterface.html">RESTServiceControllerInterface</a>
+<span class="divider">\</span><a href="../classes/eu.maxschuster.rest.RESTAuthInterface.html">RESTAuthInterface</a>
 </li>
 </ul>
 <div class="element interface">
-<p class="short_description">Interface for all RESTService controllers, that could get registered at
-RESTService instance.</p>
+<p class="short_description">Interface for RESTService auth methods</p>
 <div class="details">
 <div class="long_description"></div>
 <table class="table table-bordered">
@@ -101,48 +104,62 @@ RESTService instance.</p>
 </table>
 <h3>
 <i class="icon-custom icon-method"></i> Methods</h3>
-<a id="method_checkResponsibility"></a><div class="element clickable method public method_checkResponsibility" data-toggle="collapse" data-target=".method_checkResponsibility .collapse">
-<h2>Checks if this Controller can handle the current request.</h2>
-<pre>checkResponsibility() : bool</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>bool</code>Controller can handle the current request</div>
-</div></div>
-</div>
-<a id="method_extensionSupported"></a><div class="element clickable method public method_extensionSupported" data-toggle="collapse" data-target=".method_extensionSupported .collapse">
-<h2>Checks if the given extension is supported.</h2>
-<pre>extensionSupported(string $extension) : bool</pre>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>__construct()
+        </h2>
+<pre>__construct(\eu\maxschuster\rest\RESTService $service) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$extension</h4>
-<code>string</code><p>Extension</p></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>bool</code>Extension is supported</div>
+<div class="subelement argument"><h4>$service</h4></div>
 </div></div>
 </div>
-<a id="method_handle"></a><div class="element clickable method public method_handle" data-toggle="collapse" data-target=".method_handle .collapse">
-<h2>Handles the current request.</h2>
-<pre>handle() </pre>
+<a id="method_checkAuth"></a><div class="element clickable method public method_checkAuth" data-toggle="collapse" data-target=".method_checkAuth .collapse">
+<h2>Checks the send login data</h2>
+<pre>checkAuth() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>bool</code>Login data is correct</div>
+</div></div>
+</div>
+<a id="method_generateError"></a><div class="element clickable method public method_generateError" data-toggle="collapse" data-target=".method_generateError .collapse">
+<h2>Generates an error, usually 'HTTP/1.0 401 Unauthorized'</h2>
+<pre>generateError() </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
-<a id="method_setService"></a><div class="element clickable method public method_setService" data-toggle="collapse" data-target=".method_setService .collapse">
-<h2>Sets the calling RESTService.</h2>
-<pre>setService(\eu\maxschuster\rest\RESTService $sevice) </pre>
+<a id="method_getData"></a><div class="element clickable method public method_getData" data-toggle="collapse" data-target=".method_getData .collapse">
+<h2>Can be used to access data that has eventually has been set through
+RESTAuth::validateData()</h2>
+<pre>getData() : mixed</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$sevice</h4>
-<code><a href="../classes/eu.maxschuster.rest.RESTService.html">\eu\maxschuster\rest\RESTService</a></code><p>Calling RESTService</p></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="RESTAuth.html#%5Ceu%5Cmaxschuster%5Crest%5CRESTAuth::validateData()">\eu\maxschuster\rest\RESTAuth::validateData()</a></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>Data of different types</div>
+</div></div>
+</div>
+<a id="method_validateData"></a><div class="element clickable method public method_validateData" data-toggle="collapse" data-target=".method_validateData .collapse">
+<h2>It should do the actualy check of the login data.</h2>
+<pre>validateData() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>So run your database queries or what ever you use to check the login data
+here. If you get complete user data in  this function you can store them
+somewhere so it can access it later using RESTAuth::getData().</p></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="RESTAuthInterface.html#%5Ceu%5Cmaxschuster%5Crest%5CRESTAuthInterface::getData()">\eu\maxschuster\rest\RESTAuthInterface::getData()</a></td>
+</tr></table>
 </div></div>
 </div>
 </div>

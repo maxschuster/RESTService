@@ -33,7 +33,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">0</span></a></li>
+                <span class="label label-info">1</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
@@ -59,12 +59,15 @@
 <i class="icon-custom icon-method"></i> Methods
                     <ul>
 <li class="method public "><a href="#method___construct" title="__construct :: Constructs a new request"><span class="description">Constructs a new request</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_getDigest" title="getDigest :: Gets the HTTP Auth digest."><span class="description">Gets the HTTP Auth digest.</span><pre>getDigest()</pre></a></li>
 <li class="method public "><a href="#method_getExtension" title="getExtension :: Gets the requests file extension"><span class="description">Gets the requests file extension</span><pre>getExtension()</pre></a></li>
 <li class="method public "><a href="#method_getFilename" title="getFilename :: Gets the requests filename"><span class="description">Gets the requests filename</span><pre>getFilename()</pre></a></li>
+<li class="method public "><a href="#method_getPassword" title="getPassword :: Gets the HTTP Auth password."><span class="description">Gets the HTTP Auth password.</span><pre>getPassword()</pre></a></li>
 <li class="method public "><a href="#method_getPath" title="getPath :: Gets the seperated path segments"><span class="description">Gets the seperated path segments</span><pre>getPath()</pre></a></li>
 <li class="method public "><a href="#method_getPathWithFilename" title="getPathWithFilename :: Get path segments + filename"><span class="description">Get path segments + filename</span><pre>getPathWithFilename()</pre></a></li>
 <li class="method public "><a href="#method_getType" title="getType :: Gets the request type; see TYPE_* constants"><span class="description">Gets the request type; see TYPE_* constants</span><pre>getType()</pre></a></li>
 <li class="method public "><a href="#method_getUri" title="getUri :: Gets the requests URI"><span class="description">Gets the requests URI</span><pre>getUri()</pre></a></li>
+<li class="method public "><a href="#method_getUsername" title="getUsername :: Gets the HTTP Auth user name."><span class="description">Gets the HTTP Auth user name.</span><pre>getUsername()</pre></a></li>
 <li class="method public "><a href="#method_indexValue" title="indexValue :: Gets the value of the given index."><span class="description">Gets the value of the given index.</span><pre>indexValue()</pre></a></li>
 <li class="method public "><a href="#method_keywordValue" title="keywordValue :: Gets the value/s for a keyword."><span class="description">Gets the value/s for a keyword.</span><pre>keywordValue()</pre></a></li>
 <li class="method public "><a href="#method_setPathWithFilename" title="setPathWithFilename :: Set path segments + filename"><span class="description">Set path segments + filename</span><pre>setPathWithFilename()</pre></a></li>
@@ -72,11 +75,14 @@
 </li>
 <li class="nav-header protected">» Protected
                     <ul>
+<li class="method protected "><a href="#method_setDigest" title="setDigest :: Sets the HTTP Auth digest"><span class="description">Sets the HTTP Auth digest</span><pre>setDigest()</pre></a></li>
 <li class="method protected "><a href="#method_setExtension" title="setExtension :: Sets the requests file extension"><span class="description">Sets the requests file extension</span><pre>setExtension()</pre></a></li>
 <li class="method protected "><a href="#method_setFilename" title="setFilename :: Sets the requests filename"><span class="description">Sets the requests filename</span><pre>setFilename()</pre></a></li>
+<li class="method protected "><a href="#method_setPassword" title="setPassword :: Sets the HTTP Auth password"><span class="description">Sets the HTTP Auth password</span><pre>setPassword()</pre></a></li>
 <li class="method protected "><a href="#method_setPath" title="setPath :: Sets the seperated path segments"><span class="description">Sets the seperated path segments</span><pre>setPath()</pre></a></li>
 <li class="method protected "><a href="#method_setType" title="setType :: Gets the request type; see TYPE_* constants"><span class="description">Gets the request type; see TYPE_* constants</span><pre>setType()</pre></a></li>
 <li class="method protected "><a href="#method_setUri" title="setUri :: Sets the requests URI"><span class="description">Sets the requests URI</span><pre>setUri()</pre></a></li>
+<li class="method protected "><a href="#method_setUsername" title="setUsername :: Sets the HTTP Auth user name"><span class="description">Sets the HTTP Auth user name</span><pre>setUsername()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header">
@@ -85,13 +91,16 @@
 </li>
 <li class="nav-header protected">» Protected
                     <ul>
+<li class="property protected "><a href="#property_digest" title="$digest :: Auth digest"><span class="description"></span><pre>$digest</pre></a></li>
 <li class="property protected "><a href="#property_extension" title="$extension :: Requests file extension"><span class="description"></span><pre>$extension</pre></a></li>
 <li class="property protected "><a href="#property_filename" title="$filename :: Requests filename"><span class="description"></span><pre>$filename</pre></a></li>
+<li class="property protected "><a href="#property_password" title="$password :: Password"><span class="description"></span><pre>$password</pre></a></li>
 <li class="property protected "><a href="#property_path" title="$path :: URI path segments parts"><span class="description"></span><pre>$path</pre></a></li>
 <li class="property protected "><a href="#property_pathWithFilename" title="$pathWithFilename :: URI path segments parts + filename"><span class="description"></span><pre>$pathWithFilename</pre></a></li>
 <li class="property protected "><a href="#property_pathWithFilenameCount" title="$pathWithFilenameCount :: Number of elements inside $this-&gt;pathWithFilename"><span class="description"></span><pre>$pathWithFilenameCount</pre></a></li>
 <li class="property protected "><a href="#property_type" title="$type :: Request type; see TYPE_* constants"><span class="description"></span><pre>$type</pre></a></li>
 <li class="property protected "><a href="#property_uri" title="$uri :: The given URI"><span class="description"></span><pre>$uri</pre></a></li>
+<li class="property protected "><a href="#property_username" title="$username :: Username"><span class="description"></span><pre>$username</pre></a></li>
 </ul>
 </li>
 <li class="nav-header">
@@ -133,6 +142,10 @@
 <td><a href="mailto:dev@maxschuster.eu">Max Schuster</a></td>
 </tr>
 <tr>
+<th>license</th>
+<td><a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></td>
+</tr>
+<tr>
 <th>package</th>
 <td><a href="../packages/restservice.html">restservice</a></td>
 </tr>
@@ -141,7 +154,7 @@
 <i class="icon-custom icon-method"></i> Methods</h3>
 <a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
 <h2>Constructs a new request</h2>
-<pre>__construct(string $uri, int | string $type) </pre>
+<pre>__construct(string $uri) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -149,10 +162,18 @@
 <div class="subelement argument">
 <h4>$uri</h4>
 <code>string</code><p>Request URI</p></div>
-<div class="subelement argument">
-<h4>$type</h4>
-<code>int</code><code>string</code><p>Request type; see TYPE_* constants</p>
+</div></div>
 </div>
+<a id="method_getDigest"></a><div class="element clickable method public method_getDigest" data-toggle="collapse" data-target=".method_getDigest .collapse">
+<h2>Gets the HTTP Auth digest.</h2>
+<pre>getDigest() : string | bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns false if no digest has been
+provided.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code><code>bool</code>HTTP Auth digest</div>
 </div></div>
 </div>
 <a id="method_getExtension"></a><div class="element clickable method public method_getExtension" data-toggle="collapse" data-target=".method_getExtension .collapse">
@@ -175,6 +196,18 @@
 <h3>Returns</h3>
 <div class="subelement response">
 <code>string</code>Request filename</div>
+</div></div>
+</div>
+<a id="method_getPassword"></a><div class="element clickable method public method_getPassword" data-toggle="collapse" data-target=".method_getPassword .collapse">
+<h2>Gets the HTTP Auth password.</h2>
+<pre>getPassword() : string | bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns false if no password has been
+provided.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code><code>bool</code>HTTP Auth password</div>
 </div></div>
 </div>
 <a id="method_getPath"></a><div class="element clickable method public method_getPath" data-toggle="collapse" data-target=".method_getPath .collapse">
@@ -219,6 +252,18 @@
 <h3>Returns</h3>
 <div class="subelement response">
 <code>string</code>Requests URI</div>
+</div></div>
+</div>
+<a id="method_getUsername"></a><div class="element clickable method public method_getUsername" data-toggle="collapse" data-target=".method_getUsername .collapse">
+<h2>Gets the HTTP Auth user name.</h2>
+<pre>getUsername() : string | bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Returns false if no username has been
+provided.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code><code>bool</code>HTTP Auth user name</div>
 </div></div>
 </div>
 <a id="method_indexValue"></a><div class="element clickable method public method_indexValue" data-toggle="collapse" data-target=".method_indexValue .collapse">
@@ -268,6 +313,18 @@
 </div>
 </div></div>
 </div>
+<a id="method_setDigest"></a><div class="element clickable method protected method_setDigest" data-toggle="collapse" data-target=".method_setDigest .collapse">
+<h2>Sets the HTTP Auth digest</h2>
+<pre>setDigest(string | bool $digest) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$digest</h4>
+<code>string</code><code>bool</code><p>HTTP Auth digest</p></div>
+</div></div>
+</div>
 <a id="method_setExtension"></a><div class="element clickable method protected method_setExtension" data-toggle="collapse" data-target=".method_setExtension .collapse">
 <h2>Sets the requests file extension</h2>
 <pre>setExtension(string $extension) </pre>
@@ -290,6 +347,18 @@
 <div class="subelement argument">
 <h4>$filename</h4>
 <code>string</code><p>Request filename</p></div>
+</div></div>
+</div>
+<a id="method_setPassword"></a><div class="element clickable method protected method_setPassword" data-toggle="collapse" data-target=".method_setPassword .collapse">
+<h2>Sets the HTTP Auth password</h2>
+<pre>setPassword(string | bool $password) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$password</h4>
+<code>string</code><code>bool</code><p>HTTP Auth password</p></div>
 </div></div>
 </div>
 <a id="method_setPath"></a><div class="element clickable method protected method_setPath" data-toggle="collapse" data-target=".method_setPath .collapse">
@@ -328,8 +397,26 @@
 <code>string</code><p>Requests URI</p></div>
 </div></div>
 </div>
+<a id="method_setUsername"></a><div class="element clickable method protected method_setUsername" data-toggle="collapse" data-target=".method_setUsername .collapse">
+<h2>Sets the HTTP Auth user name</h2>
+<pre>setUsername(string | bool $username) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$username</h4>
+<code>string</code><code>bool</code><p>HTTP Auth user name</p></div>
+</div></div>
+</div>
 <h3>
 <i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property_digest"> </a><div class="element clickable property protected property_digest" data-toggle="collapse" data-target=".property_digest .collapse">
+<h2></h2>
+<pre>$digest : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
 <a id="property_extension"> </a><div class="element clickable property protected property_extension" data-toggle="collapse" data-target=".property_extension .collapse">
 <h2></h2>
 <pre>$extension : string</pre>
@@ -339,6 +426,12 @@
 <a id="property_filename"> </a><div class="element clickable property protected property_filename" data-toggle="collapse" data-target=".property_filename .collapse">
 <h2></h2>
 <pre>$filename : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_password"> </a><div class="element clickable property protected property_password" data-toggle="collapse" data-target=".property_password .collapse">
+<h2></h2>
+<pre>$password : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
@@ -369,6 +462,12 @@
 <a id="property_uri"> </a><div class="element clickable property protected property_uri" data-toggle="collapse" data-target=".property_uri .collapse">
 <h2></h2>
 <pre>$uri : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_username"> </a><div class="element clickable property protected property_username" data-toggle="collapse" data-target=".property_username .collapse">
+<h2></h2>
+<pre>$username : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
@@ -453,7 +552,7 @@
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
-            generated on 2013-01-10T23:58:29+01:00.<br></footer></div>
+            generated on 2013-01-11T23:01:34+01:00.<br></footer></div>
 </div>
 </body>
 </html>

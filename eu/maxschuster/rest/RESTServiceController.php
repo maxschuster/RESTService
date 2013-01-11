@@ -28,6 +28,7 @@ namespace eu\maxschuster\rest;
 /**
  * Primitive RESTService controller.
  * @author Max Schuster <dev@maxschuster.eu>
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  * @package restservice
  */
 abstract class RESTServiceController implements RESTServiceControllerInterface {

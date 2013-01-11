@@ -29,6 +29,7 @@ namespace eu\maxschuster\rest;
  * Primitive RESTService CRUD controller. Can be used as Template for
  * controllers that create, read, update and delete resources
  * @author Max Schuster <dev@maxschuster.eu>
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  * @package restservice
  * @see http://en.wikipedia.org/wiki/Create,_read,_update_and_delete
  */

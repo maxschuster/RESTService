@@ -30,6 +30,7 @@ namespace eu\maxschuster\rest;
  * instance of this class and this class seeks the right controller for the
  * request to be processed.
  * @author Max Schuster <dev@maxschuster.eu>
+ * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  * @package restservice
  */
 class RESTService {
