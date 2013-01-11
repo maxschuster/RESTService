@@ -77,4 +77,5 @@ $srv->handle();
 ```
 
 # Documentation
-You can find a phpdoc inside the 'doc' folder
+You can find a phpdoc inside the 'doc' folder or under
+http://dev.maxschuster.eu/RESTService/doc/
