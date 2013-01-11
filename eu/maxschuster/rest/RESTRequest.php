@@ -109,18 +109,35 @@ class RESTRequest {
      * @var string
      */
     protected $uri;
+    
+    /**
+     * Username
+     * @var string
+     */
+    protected $username;
+    
+    /**
+     * Password
+     * @var string
+     */
+    protected $password;
+    
+    /**
+     * Auth digest
+     * @var string 
+     */
+    protected $digest;
 
     /**
      * Constructs a new request
      * @param string $uri
      * Request URI
-     * @param int|string $type
-     * Request type; see TYPE_* constants
      */
-    public function __construct($uri, $type = NULL) {
-        if (!$type) {
-            $type = $_SERVER['REQUEST_METHOD'];
-        }
+    public function __construct($uri) {
+        $type = $_SERVER['REQUEST_METHOD'];
+        $this->setUsername(isset($_SERVER['PHP_AUTH_USER']) ? $_SERVER['PHP_AUTH_USER'] : false);
+        $this->setPassword(isset($_SERVER['PHP_AUTH_PW']) ? $_SERVER['PHP_AUTH_PW'] : false);
+        $this->setDigest(isset($_SERVER['PHP_AUTH_DIGEST']) ? $_SERVER['PHP_AUTH_DIGEST'] : false);
         $this->setType($type);
         $this->setUri($uri);
     }
@@ -312,6 +329,59 @@ class RESTRequest {
         $this->pathWithFilename = $pathWithFilename;
         $this->pathWithFilenameCount = sizeof($pathWithFilename);
     }
+    
+    /**
+     * Gets the HTTP Auth user name. Returns false if no username has been
+     * provided.
+     * @return string|bool HTTP Auth user name
+     */
+    public function getUsername() {
+        return $this->username;
+    }
+
+    /**
+     * Sets the HTTP Auth user name
+     * @param string|bool $username HTTP Auth user name
+     */
+    protected function setUsername($username) {
+        $this->username = $username;
+    }
+
+    /**
+     * Gets the HTTP Auth password. Returns false if no password has been
+     * provided.
+     * @return string|bool HTTP Auth password
+     */
+    public function getPassword() {
+        return $this->password;
+    }
+
+    /**
+     * Sets the HTTP Auth password
+     * @param string|bool $password HTTP Auth password
+     */
+    protected function setPassword($password) {
+        $this->password = $password;
+    }
+    
+    /**
+     * Gets the HTTP Auth digest. Returns false if no digest has been
+     * provided.
+     * @return string|bool HTTP Auth digest
+     */
+    public function getDigest() {
+        return $this->digest;
+    }
+
+    /**
+     * Sets the HTTP Auth digest
+     * @param string|bool $digest HTTP Auth digest
+     */
+    protected function setDigest($digest) {
+        $this->digest = $digest;
+    }
+
+
     
 }
 

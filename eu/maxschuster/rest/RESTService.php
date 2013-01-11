@@ -190,7 +190,6 @@ class RESTService {
      */
     public function __construct($uri) {
         $this->request = new RESTRequest($uri,$_SERVER['REQUEST_METHOD']);
-        //var_dump($this->request); die;
     }
     
     /**
@@ -276,7 +275,6 @@ class RESTService {
             throw $e;
         }
     }
-
     
 }
 
