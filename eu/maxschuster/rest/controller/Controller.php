@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file contains the RESTServiceControllerInterface interface
+ * This file contains the RESTServiceController class
  * @author Max Schuster <dev@maxschuster.eu>
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  * @package restservice
@@ -23,43 +23,44 @@
  * limitations under the License.
  */
 
-namespace eu\maxschuster\rest;
+namespace eu\maxschuster\rest\controller;
+
+use eu\maxschuster\rest\Service;
 
 /**
- * Interface for all RESTService controllers, that could get registered at
- * RESTService instance.
+ * Primitive RESTService controller.
  * @author Max Schuster <dev@maxschuster.eu>
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  * @package restservice
  */
-interface RESTServiceControllerInterface {
+abstract class Controller implements ControllerInterface {
+    /**
+     * The calling RESTService.
+     * @var Service
+     */
+    protected $service;
     
+    /**
+     * The RESTRequest to handle.
+     * @var Request
+     */
+    protected $request;
+    
+    /**
+     * Array with supported extensions.
+     * @var array
+     */
+    protected $supportedExtensions;
+
     /**
      * Sets the calling RESTService.
-     * @param \eu\maxschuster\rest\RESTService $sevice 
+     * @param \eu\maxschuster\rest\Service $sevice 
      * Calling RESTService
      */
-    public function setService(RESTService $sevice);
-    
-    /**
-     * Checks if this Controller can handle the current request.
-     * @return bool
-     * Controller can handle the current request
-     */
-    public function checkResponsibility();
-    
-    /**
-     * Handles the current request.
-     */
-    public function handle();
-    
-    /**
-     * Checks if the given extension is supported.
-     * @param string $extension
-     * Extension
-     * @return bool Extension is supported
-     */
-    public function extensionSupported($extension);
+    public function setService(Service $sevice) {
+        $this->service = $sevice;
+        $this->request = $sevice->getRequest();
+    }
     
 }
 

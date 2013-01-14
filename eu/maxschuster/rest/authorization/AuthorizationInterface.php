@@ -23,7 +23,9 @@
  * limitations under the License.
  */
 
-namespace eu\maxschuster\rest;
+namespace eu\maxschuster\rest\authorization;
+
+use eu\maxschuster\rest\Service;
 
 /**
  * Interface for RESTService auth methods
@@ -32,13 +34,13 @@ namespace eu\maxschuster\rest;
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  * @package restservice
  */
-interface RESTAuthInterface {
+interface AuthorizationInterface {
     
     /**
      * Contructor
-     * @param RESTService $service The calling service
+     * @param Service $service The calling service
      */
-    public function __construct(RESTService $service);
+    public function __construct(Service $service);
     
     /**
      * Checks the send login data
@@ -49,7 +51,7 @@ interface RESTAuthInterface {
     /**
      * Can be used to access data that has eventually has been set through
      * RESTAuth::validateData()
-     * @see RESTAuth::validateData()
+     * @see Basic::validateData()
      * @return mixed Data of different types
      */
     public function getData();
@@ -64,9 +66,9 @@ interface RESTAuthInterface {
      * So run your database queries or what ever you use to check the login data
      * here. If you get complete user data in  this function you can store them
      * somewhere so it can access it later using RESTAuth::getData().
-     * @see RESTAuthInterface::getData()
+     * @see AuthInterface::getData()
      */
-    abstract public function validateData();
+    public function validateData();
     
 }
 

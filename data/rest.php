@@ -1,20 +1,20 @@
 <?php
 
-//require_once '../eu/maxschuster/rest/inc.rest.php';
-require_once 'rest.phar';
-use eu\maxschuster\rest\RESTService;
-use eu\maxschuster\rest\RESTServiceCRUDController;
-use eu\maxschuster\rest\RESTServiceController;
+require_once '../eu/maxschuster/rest/inc.rest.php';
+//require_once 'rest.phar';
+use eu\maxschuster\rest\Service;
+use eu\maxschuster\rest\controller\CRUD;
+use eu\maxschuster\rest\controller\Controller;
 
-class TestUserCRUDController extends RESTServiceCRUDController {
+class TestUserCRUDController extends CRUD {
     
     protected function create() {
         $obj = new stdClass();
         $obj->action = 'user';
         $obj->value = $this->request->keywordValue('user');
         $obj->result = 'Create user "' . $obj->value . '"';
-        $this->service->setStatus(RESTService::STATUS_CREATED);
-        $this->service->setContentType(RESTService::CONTENT_TYPE_JSON);
+        $this->service->setStatus(Service::STATUS_CREATED);
+        $this->service->setContentType(Service::CONTENT_TYPE_JSON);
         echo json_encode($obj);
     }
 
@@ -23,8 +23,8 @@ class TestUserCRUDController extends RESTServiceCRUDController {
         $obj->action = 'user';
         $obj->value = $this->request->keywordValue('user');
         $obj->result = 'delete user "' . $obj->value . '"';
-        $this->service->setStatus(RESTService::STATUS_OK);
-        $this->service->setContentType(RESTService::CONTENT_TYPE_JSON);
+        $this->service->setStatus(Service::STATUS_OK);
+        $this->service->setContentType(Service::CONTENT_TYPE_JSON);
         echo json_encode($obj);
     }
 
@@ -33,8 +33,8 @@ class TestUserCRUDController extends RESTServiceCRUDController {
         $obj->action = 'user';
         $obj->value = $this->request->keywordValue('user');
         $obj->result = 'read user "' . $obj->value . '"';
-        $this->service->setStatus(RESTService::STATUS_OK);
-        $this->service->setContentType(RESTService::CONTENT_TYPE_JSON);
+        $this->service->setStatus(Service::STATUS_OK);
+        $this->service->setContentType(Service::CONTENT_TYPE_JSON);
         echo json_encode($obj);
     }
 
@@ -43,8 +43,8 @@ class TestUserCRUDController extends RESTServiceCRUDController {
         $obj->action = 'user';
         $obj->result = 'update user "' . $obj->value . '"';
         $obj->result = array();
-        $this->service->setStatus(RESTService::STATUS_OK);
-        $this->service->setContentType(RESTService::CONTENT_TYPE_JSON);
+        $this->service->setStatus(Service::STATUS_OK);
+        $this->service->setContentType(Service::CONTENT_TYPE_JSON);
         echo json_encode($obj);
     }
 
@@ -58,8 +58,31 @@ class TestUserCRUDController extends RESTServiceCRUDController {
 
 }
 
-class SimpleSearchController extends RESTServiceController {
+class TestBasicAuth extends \eu\maxschuster\rest\authorization\Basic {
     
+    public function __construct(Service $service) {
+        parent::__construct($service);
+    }
+
+    public function validateData() {
+        return ($this->request->getPassword() === 'password' && $this->request->getUsername() === 'user');
+    }
+
+}
+
+class SimpleSearchController extends eu\maxschuster\rest\controller\BasicAuthorization {
+    
+    protected $auth;
+    
+    public function setService(Service $sevice) {
+        parent::setService($sevice);
+        $this->auth = new TestBasicAuth($sevice);
+    }
+    
+    public function authorizationFailed() {
+        $this->auth->generateError();
+    }
+
     public function checkResponsibility() {
         return $this->request->indexValue(0) == 'search';
     }
@@ -73,14 +96,19 @@ class SimpleSearchController extends RESTServiceController {
         $obj->action = 'search';
         $obj->value = $this->request->keywordValue('search');
         $obj->result = array();
-        $this->service->setStatus(RESTService::STATUS_OK);
-        $this->service->setContentType(RESTService::CONTENT_TYPE_JSON);
+        $this->service->setStatus(Service::STATUS_OK);
+        $this->service->setContentType(Service::CONTENT_TYPE_JSON);
         echo json_encode($obj);
+    }
+    
+    public function checkAuthorization() {
+        $auth = new TestBasicAuth($this->service);
+        return $auth->checkAuth();
     }
     
 }
 
-$srv = new RESTService($_GET['_REWRITE_']);
+$srv = new Service($_GET['_REWRITE_']);
 $srv->addController(new SimpleSearchController(), new TestUserCRUDController());
 $srv->handle();
 

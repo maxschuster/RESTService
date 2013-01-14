@@ -23,42 +23,18 @@
  * limitations under the License.
  */
 
-namespace eu\maxschuster\rest;
+namespace eu\maxschuster\rest\controller;
+
+use eu\maxschuster\rest\Service;
+use eu\maxschuster\rest\authorization\Basic;
 
 /**
- * Primitive RESTService controller.
+ * Primitive RESTService controller with basic authorization.
  * @author Max Schuster <dev@maxschuster.eu>
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  * @package restservice
  */
-abstract class RESTServiceController implements RESTServiceControllerInterface {
-    /**
-     * The calling RESTService.
-     * @var RESTService
-     */
-    protected $service;
-    
-    /**
-     * The RESTRequest to handle.
-     * @var RESTRequest
-     */
-    protected $request;
-    
-    /**
-     * Array with supported extensions.
-     * @var array
-     */
-    protected $supportedExtensions;
-
-    /**
-     * Sets the calling RESTService.
-     * @param \eu\maxschuster\rest\RESTService $sevice 
-     * Calling RESTService
-     */
-    public function setService(RESTService $sevice) {
-        $this->service = $sevice;
-        $this->request = $sevice->getRequest();
-    }
+abstract class BasicAuthorization extends Controller implements RequiresAuthorizationInterface {
     
 }
 

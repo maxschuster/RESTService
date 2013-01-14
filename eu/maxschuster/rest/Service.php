@@ -25,6 +25,9 @@
 
 namespace eu\maxschuster\rest;
 
+use eu\maxschuster\rest\controller\ControllerInterface;
+use eu\maxschuster\rest\controller\RequiresAuthorizationInterface;
+
 /**
  * This class represents the rest service. Controller can be registered in an
  * instance of this class and this class seeks the right controller for the
@@ -33,7 +36,7 @@ namespace eu\maxschuster\rest;
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  * @package restservice
  */
-class RESTService {
+class Service {
     
     /*
      * Source for status code descriptions
@@ -174,13 +177,13 @@ class RESTService {
 
     /**
      * Collection of controllers
-     * @var RESTServiceControllerInterface[]
+     * @var ControllerInterface[]
      */
     protected $controllers = array();
     
     /**
      * Parsed request
-     * @var RESTRequest
+     * @var Request
      */
     protected $request;
 
@@ -190,15 +193,15 @@ class RESTService {
      * Request URI from REWRITE or any other source
      */
     public function __construct($uri) {
-        $this->request = new RESTRequest($uri,$_SERVER['REQUEST_METHOD']);
+        $this->request = new Request($uri,$_SERVER['REQUEST_METHOD']);
     }
     
     /**
      * Adds one or multible controllers to the service
-     * @param RESTServiceControllerInterface $controller
+     * @param ControllerInterface $controller
      * Controller for the RESTService that implements
      * the RESTServiceControllerInterface interface.
-     * @param RESTServiceControllerInterface $_ [optional]
+     * @param ControllerInterface $_ [optional]
      * Additional controllers...
      * @throws \UnexpectedValueException
      */
@@ -206,19 +209,19 @@ class RESTService {
         $n = func_num_args();
         for ($i = 0; $i < $n; $i++) {
             $c = func_get_arg($i);
-            if ($c instanceof RESTServiceControllerInterface) {
+            if ($c instanceof ControllerInterface) {
                 // Make shure that we have only one controller of that type
                 $this->controllers[get_class($c)] = $c;
                 continue;
             }
             throw new \UnexpectedValueException('All controllers must '.
-                    'implement RESTServiceControllerInterface!');
+                    'implement ControllerInterface!');
         }
     }
     
     /**
      * Get parsed request
-     * @return RESTRequest Parsed request
+     * @return Request Parsed request
      */
     public function getRequest() {
         return $this->request;
@@ -228,7 +231,7 @@ class RESTService {
      * Sets the response HTTP status code. Be shure to call this function before
      * any content has been send to the client.
      * @param int $status HTTP status code; see STATUS_* constants!
-     * @see RESTService::STATUS_OK
+     * @see Service::STATUS_OK
      * @link http://en.wikipedia.org/wiki/List_of_HTTP_status_codes
      * @link http://php.net/manual/en/function.header.php
      */
@@ -262,6 +265,12 @@ class RESTService {
                         $this->request->getExtension()
                     )  
                 ) {
+                    if ($controller instanceof RequiresAuthorizationInterface) {
+                        if (!$controller->checkAuthorization()) {
+                            $controller->authorizationFailed();
+                            return;
+                        }
+                    }
                     $controller->handle();
                     return;
                 }

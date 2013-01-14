@@ -23,9 +23,11 @@
  * limitations under the License.
  */
 
-namespace eu\maxschuster\rest;
+namespace eu\maxschuster\rest\authorization;
 
-use eu\maxschuster\rest\RESTAuthInterface;
+use eu\maxschuster\rest\authorization\AuthorizationInterface;
+use eu\maxschuster\rest\Service;
+use eu\maxschuster\rest\Request;
 
 /**
  * This class can be used to perform a "Basic access authentication".
@@ -35,7 +37,7 @@ use eu\maxschuster\rest\RESTAuthInterface;
  * @link http://en.wikipedia.org/wiki/Basic_access_authentication
  * @package restservice
  */
-abstract class RESTAuth implements RESTAuthInterface {
+abstract class Basic implements AuthorizationInterface {
     
     /**
      * Login data
@@ -51,13 +53,13 @@ abstract class RESTAuth implements RESTAuthInterface {
 
     /**
      * REST service
-     * @var RESTService
+     * @var Service
      */
     protected $service;
     
     /**
      * Request
-     * @var RESTRequest
+     * @var Request
      */
     protected $request;
 
@@ -77,38 +79,32 @@ abstract class RESTAuth implements RESTAuthInterface {
      * Generates a 'HTTP/1.0 401 Unauthorized' error and will STOP the script.
      */
     public function generateError() {
-        header('WWW-Authenticate: Basic realm="' . $this->realm . '"');
-        $this->service->setStatus(RESTService::STATUS_UNAUTHORIZED);
-        $this->service->setContentType(RESTService::CONTENT_TYPE_TEXT);
-        echo 'HTTP/1.0 401 Unauthorized';
+        if ($this->request->getMode() === Request::MODE_AJAX) {
+            $this->service->setStatus(Service::STATUS_FORBIDDEN);
+            $this->service->setContentType(Service::CONTENT_TYPE_TEXT);
+            echo 'HTTP/1.0 403 Forbidden';
+        } else {
+            header('WWW-Authenticate: Basic realm="' . $this->realm . '"');
+            $this->service->setStatus(Service::STATUS_UNAUTHORIZED);
+            $this->service->setContentType(Service::CONTENT_TYPE_TEXT);
+            echo 'HTTP/1.0 401 Unauthorized';
+        }
         exit;
     }
 
     /**
      * Constructor of the auth class
-     * @param RESTService $service Calling RESTService
+     * @param Service $service Calling RESTService
      */
-    public function __construct(RESTService $service) {
+    public function __construct(Service $service) {
         $this->service = $service;
         $this->request = $service->getRequest();
     }
     
     /**
-     * This function must get overridden.
-     * It should do the actualy check of the login data.
-     * So run your database queries or what ever you use to check the login data
-     * here. If you get complete user data in  this function you can store them
-     * inside the RESTAuth::$data property so it can access it later using
-     * RESTAuth::getData()
-     * @see RESTAuth::$data
-     * @see RESTAuth::getData()
-     */
-    abstract public function validateData();
-    
-    /**
      * Can be used to access data that has eventually has been set through
      * RESTAuth::validateData()
-     * @see RESTAuth::validateData()
+     * @see Basic::validateData()
      * @return mixed Data of different types
      */
     public function getData() {

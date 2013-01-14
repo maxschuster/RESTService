@@ -8,15 +8,17 @@
  */
 
 // Interfaces
-require_once 'RESTServiceControllerInterface.php';
-require_once 'RESTAuthInterface.php';
+require_once __DIR__ . '/controller/ControllerInterface.php';
+require_once __DIR__ . '/controller/RequiresAuthorizationInterface.php';
+require_once __DIR__ . '/authorization/AuthorizationInterface.php';
 
 // Classes
-require_once 'RESTRequest.php';
-require_once 'RESTService.php';
-require_once 'RESTServiceController.php';
-require_once 'RESTServiceCRUDController.php';
-require_once 'RESTAuth.php';
-require_once 'RESTAuthDigest.php';
+require_once __DIR__ . '/Request.php';
+require_once __DIR__ . '/Service.php';
+require_once __DIR__ . '/controller/Controller.php';
+require_once __DIR__ . '/controller/CRUD.php';
+require_once __DIR__ . '/controller/BasicAuthorization.php';
+require_once __DIR__ . '/authorization/Basic.php';
+require_once __DIR__ . '/authorization/Digest.php';
 
 ?>

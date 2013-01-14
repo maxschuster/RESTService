@@ -31,7 +31,7 @@ namespace eu\maxschuster\rest;
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  * @package restservice
  */
-class RESTRequest {
+class Request {
     
     /**
      * Unknown Request type
@@ -68,6 +68,30 @@ class RESTRequest {
      * @const TYPE_ALL
      */
     const TYPE_ALL = 2147483647;
+    
+    /**
+     * Unknown request mode
+     */
+    const MODE_UNKNOWN = 1;
+    
+    /**
+     * Normal request mode (Default)
+     * @const MODE_NORMAL
+     */
+    const MODE_NORMAL = 2;
+    
+    /**
+     * Ajax request mode. Usefull to aviod password questions of the browser
+     * (401 Unauthorized)
+     * @const MODE_AJAX
+     */
+    const MODE_AJAX = 4;
+    
+    /**
+     * All request modes
+     * @const MODE_ALL
+     */
+    const MODE_ALL = 2147483647;
     
     /**
      * Request type; see TYPE_* constants
@@ -128,6 +152,18 @@ class RESTRequest {
      * @var string 
      */
     protected $digest;
+    
+    /**
+     * Request mode
+     * @var int
+     */
+    protected $mode;
+
+    /**
+     * Contains values of headers, that are related to rest service
+     * @var array
+     */
+    protected $serviceHeaders = array();
 
     /**
      * Constructs a new request
@@ -136,13 +172,55 @@ class RESTRequest {
      */
     public function __construct($uri) {
         $type = $_SERVER['REQUEST_METHOD'];
+        $this->parseServiceHeaders();
+        $this->setMode(isset($this->serviceHeaders['MODE']) ? $this->serviceHeaders['MODE'] : FALSE);
         $this->setUsername(isset($_SERVER['PHP_AUTH_USER']) ? $_SERVER['PHP_AUTH_USER'] : false);
         $this->setPassword(isset($_SERVER['PHP_AUTH_PW']) ? $_SERVER['PHP_AUTH_PW'] : false);
         $this->setDigest(isset($_SERVER['PHP_AUTH_DIGEST']) ? $_SERVER['PHP_AUTH_DIGEST'] : false);
+        $this->doOverride();
         $this->setType($type);
         $this->setUri($uri);
     }
     
+    /**
+     * Converts password and username to normal text
+     * @param string $in
+     * @return string Decoded $in
+     */
+    protected function passwordConvert($in) {
+        return base64_decode($in);
+    }
+
+
+    /**
+     * Overrides some data with data from rest service headers (like username
+     * and password).
+     */
+    protected function doOverride() {
+        $h = &$this->serviceHeaders;
+        if (isset($h['USERNAME'])) {
+            $this->setUsername($this->passwordConvert($h['USERNAME']));
+            $this->setPassword(isset($h['PASSWORD']) ? $this->passwordConvert($h['PASSWORD']) : '');
+        }
+        if (isset($h['DIGEST'])) {
+            $this->setDigest($h['DIGEST']);
+        }
+    }
+
+    /**
+     * Fills the $this->serviceHeaders array with data rest service from related
+     * headers.
+     */
+    protected function parseServiceHeaders() {
+        $begins = 'HTTP_X_REST_SERVICE_';
+        $len = strlen($begins);
+        foreach ($_SERVER as $key => $value) {
+            if (substr($key, 0, $len) === $begins) {
+                $this->serviceHeaders[substr($key, $len)] = $value;
+            }
+        }
+    }
+
     /**
      * Gets the value/s for a keyword.
      * @param string $keyword
@@ -381,8 +459,47 @@ class RESTRequest {
     protected function setDigest($digest) {
         $this->digest = $digest;
     }
+    
+    /**
+     * Gets the request mode; see Request::MODE_* constants.
+     * @return int Request Mode
+     */
+    public function getMode() {
+        return $this->mode;
+    }
 
+    /**
+     * Sets the request mode; see Request::MODE_* constants.
+     * @param int|string|bool $mode Request Mode
+     */
+    public function setMode($mode) {
+        if (is_null($mode) || $mode === false || $mode === '') {
+            $this->mode = self::MODE_NORMAL;
+        }
+        if (is_string($mode)) {
+            switch (strtolower($mode)) {
+                case 'ajax':
+                    $this->mode = self::MODE_AJAX;
+                    break;
+                case 'normal':
+                    $this->mode = self::MODE_NORMAL;
+                    break;
+                default:
+                    $this->mode = self::MODE_UNKNOWN;
+                    break;
+            }
+            return;
+        }
+        $this->mode = (int)$mode;
+    }
 
+    /**
+     * Gets all special rest service headers without their prefix
+     * @return array Rest service headers without their prefix
+     */
+    public function getServiceHeaders() {
+        return $this->serviceHeaders;
+    }
     
 }
 

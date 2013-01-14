@@ -3,6 +3,31 @@
     <head>
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(function(){
+                $('#ajax').click(function(e){
+                    e.preventDefault();
+                    var $this = $(this);
+                    
+                    $.ajax({
+                        url: $this.attr('href'),
+                        type: 'get',
+                        dataType: 'text',
+                        headers: {
+                            'X-Rest-Service-Mode': 'ajax',
+                            'X-Rest-Service-Username': 'dXNlcg==', //user
+                            'X-Rest-Service-Password': 'cGFzc3dvcmQ=', //password
+                        },
+                        success: function(data) {
+                            alert(data);
+                        }
+                    });
+                    
+                    return false;
+                });
+            });
+        </script>
     </head>
     <body>
         <div>
@@ -13,6 +38,9 @@
                 </li>
                 <li>
                     <a href="data/user/John%20Doe.json">Read User John Doe</a>
+                </li>
+                <li>
+                    <a href="data/search/Teddy%20Bear.json" id="ajax">Ajax</a>
                 </li>
             </ul>
         </div>

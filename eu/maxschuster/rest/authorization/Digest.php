@@ -23,9 +23,7 @@
  * limitations under the License.
  */
 
-namespace eu\maxschuster\rest;
-
-use eu\maxschuster\rest\RESTService;
+namespace eu\maxschuster\rest\authorization;
 
 /**
  * I'll maybe finish this class later. At the moment i have no use for it.
@@ -35,7 +33,7 @@ use eu\maxschuster\rest\RESTService;
  * @link http://en.wikipedia.org/wiki/Digest_access_authentication
  * @package restservice
  */
-abstract class RESTAuthDigest extends RESTAuth {
+abstract class Digest extends Basic {
     /*
     protected $password;
 

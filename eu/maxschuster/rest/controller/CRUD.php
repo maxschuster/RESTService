@@ -23,7 +23,9 @@
  * limitations under the License.
  */
 
-namespace eu\maxschuster\rest;
+namespace eu\maxschuster\rest\controller;
+
+use eu\maxschuster\rest\Request;
 
 /**
  * Primitive RESTService CRUD controller. Can be used as Template for
@@ -33,22 +35,22 @@ namespace eu\maxschuster\rest;
  * @package restservice
  * @link http://en.wikipedia.org/wiki/Create,_read,_update_and_delete
  */
-abstract class RESTServiceCRUDController extends RESTServiceController {
+abstract class CRUD extends Controller {
     /**
      * Handles the current request.
      */
     public function handle() {
         switch ($this->request->getType()) {
-            case RESTRequest::TYPE_POST:
+            case Request::TYPE_POST:
                 $this->create();
                 break;
-            case RESTRequest::TYPE_GET:
+            case Request::TYPE_GET:
                 $this->read();
                 break;
-            case RESTRequest::TYPE_PUT:
+            case Request::TYPE_PUT:
                 $this->update();
                 break;
-            case RESTRequest::TYPE_DELETE:
+            case Request::TYPE_DELETE:
                 $this->delete();
                 break;
         }
